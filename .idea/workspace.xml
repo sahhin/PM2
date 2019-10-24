@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d8d779d-65d2-4725-a807-62b5be1664ef" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/a12/BasetypeRanges.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/a12/BasetypeRanges.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,6 +23,7 @@
   </component>
   <component name="ProjectId" id="1SI0GQPh95ws8GWaYLQqoLNmOfW" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -76,7 +78,7 @@
       <updated>1571235705532</updated>
       <workItem from="1571235710861" duration="2880000" />
       <workItem from="1571925594680" duration="1200000" />
-      <workItem from="1571927934671" duration="23000" />
+      <workItem from="1571927934671" duration="428000" />
     </task>
     <servers />
   </component>

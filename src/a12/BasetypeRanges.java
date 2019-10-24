@@ -10,9 +10,6 @@ public class BasetypeRanges {
 
         // TODO Aufruf der Methode isShort
 
-        //
-
-
         //  TODO Aufruf der beiden add-Methoden, die einen Überlauf erzeugen
 
         // TODO Test, ob einen Addition einen Überlauf erzeugt. Aufruf 2'er Methoden
@@ -28,6 +25,11 @@ public class BasetypeRanges {
 
     // TODO Schreiben Sie eine Methode, die zwei byte Werte addiert
     // TODO Schreiben Sie eine Methode, die zwei short Werte addiert
+    public static  short add(short a, short b){
+        short result;
+        result = a + b;
+        return result;
+    }
 
     // TODO Methode isShort
     public static boolean isShort(long val){
