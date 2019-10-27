@@ -12,7 +12,7 @@ import java.util.Random;
 public class BasetypeGenerator {
 
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
-        int n = 0; // TODO hier die Integergröße aus den Eingabeparametern lesen
+        int n = 10; // TODO hier die Integergröße aus den Eingabeparametern lesen
         // Gegeben NICHT ÄNDERN!!
         Object[] collector = generate(n);
 
@@ -46,9 +46,30 @@ public class BasetypeGenerator {
         for (int j = startIndex; j < startIndex + bytes; j++) {
             collector[j] = random(rand, Byte.MIN_VALUE, Byte.MAX_VALUE);
         }
-
-        // TODO usw.
-
+        startIndex = bytes;
+        for (int j = startIndex; j < startIndex + shorts; j++) {
+            collector[j] = random(rand, Short.MIN_VALUE, Short.MAX_VALUE);
+        }
+        startIndex = shorts;
+        for (int j = startIndex; j < startIndex + ints; j++) {
+            collector[j] = random(rand, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        }
+        startIndex = ints;
+        for (int j = startIndex; j < startIndex + longs; j++) {
+            collector[j] = random(rand, Long.MIN_VALUE, Long.MAX_VALUE);
+        }
+        startIndex = longs;
+        for (int j = startIndex; j < startIndex + floats; j++) {
+            collector[j] = random(rand, Float.MIN_VALUE, Float.MAX_VALUE);
+        }
+        startIndex = floats;
+        for (int j = startIndex; j < startIndex + doubles; j++) {
+            collector[j] = random(rand, Double.MIN_VALUE, Double.MAX_VALUE);
+        }
+        startIndex = doubles;
+        for (int j = startIndex; j < startIndex + notClassifiedOnes; j++) {
+            collector[j] = Integer.toString(j);
+        }
 
         // Gegeben NICHT ÄNDERN!!
         shuffle(collector,rand);
@@ -62,7 +83,27 @@ public class BasetypeGenerator {
     // TODO Implementieren für alle Basisdatentypen
 
     private static byte random(Random rand, byte a, byte b) {
-        return (byte)0;
+        return (byte) ((byte) (rand.nextInt()*(b-a)));
+    }
+
+    private static short random(Random rand, short a, short b) {
+        return (short) ((short) (rand.nextInt()*(b-a)));
+    }
+
+    private static int random(Random rand, int a, int b) {
+        return (int) rand.nextInt()*(b-a);
+    }
+
+    private static long random(Random rand, long a, long b) {
+        return (long) rand.nextDouble()*(b-a);
+    }
+
+    private static float random(Random rand, float a, float b) {
+        return (float) rand.nextDouble()*(b-a);
+    }
+
+    private static double random(Random rand, double a, double b) {
+        return rand.nextDouble()*(b-a);
     }
 
     private static Object[] shuffle(Object[] a, Random rand) {
