@@ -1,35 +1,45 @@
 package a11;
 
-public abstract class BaseCounter extends Counter{
-    private  int start;
+public  class BaseCounter extends Counter{
+    private int start;
     private int count;
 
     public BaseCounter(int start){
-        count = start;
+        this.count = start;
+        this.start = start;
     }
 
     public BaseCounter(){
-        this(0);
+        this(30);
+        this.count = start;
     }
 
     @Override
-    public int inc() {
-        count += 1;
-        return  count;
+    public void inc() {
+        this.count++;
     }
 
     @Override
     public int start() {
-        return start;
+        return this.start;
     }
 
     @Override
     public int tally() {
-        return count;
+        return this.count;
     }
 
     @Override
     public void reset(){
-    count = start;
+    this.count = this.start;
     }
+
+    public static void main(String[] args) {
+        BaseCounter bc = new BaseCounter(4);
+        bc.inc();
+        bc.inc();bc.inc();
+        System.out.println(bc);
+    }
+
 }
+

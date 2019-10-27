@@ -1,7 +1,7 @@
 package a11;
 
 public abstract class Counter {
-    public abstract int inc();
+    public abstract void inc();
 
     public abstract int start();
 
@@ -14,6 +14,6 @@ public abstract class Counter {
     public abstract void reset();
 
     public String toString() {
-        return getClass().getName() + "  start:" + start() + " " + "  tally:" + tally() + "  num_inc:" + numInc();
+        return getClass().getName() + " start:" + start() +  " tally:" + tally() + " num_inc:" + numInc();
     }
 }
