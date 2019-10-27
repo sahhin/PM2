@@ -33,7 +33,8 @@ public class BasetypeRanges {
         System.out.println(Short.MIN_VALUE + " + " + Short.MAX_VALUE + " = " + btr.overflowAddShort(Short.MIN_VALUE, Short.MAX_VALUE));
 
         // TODO Aufruf der Methoden für die korrekte Darstellung als binäre Zeichenkette byte, short char
-        byte valueByte = -64;
+        byte valueByte = 127;
+        System.out.printf("Hier");
         System.out.println(btr.toBinaryStringByte(valueByte));
 
         short valueShort = 32678;
@@ -45,7 +46,9 @@ public class BasetypeRanges {
         System.out.println(Integer.toBinaryString((Character.MAX_VALUE + Character.MAX_VALUE)));
 
         // TODO Ergebnisse erklären
-//        floatPrecision();
+//        floatPrecision()
+        floatPrecision();
+        doubleUnderflow();
 //        doubleUnderflow();
     }
 
@@ -92,21 +95,20 @@ public class BasetypeRanges {
     }
 
     // TODO Schreiben Sie eine Methode, die ein byte in korrekte Binärdarstellung umwandelt
-    public static String toBinaryStringByte(byte byteValue) {
-        String binInt = Integer.toBinaryString(new Integer(byteValue));
-        int stringLength = 8;
+    private static String toBinaryStringByte(byte byteValue) {
+        String binInt = Integer.toBinaryString((int) byteValue);
 
         if (byteValue < 0) {
-            return binInt.substring(24, 32);
+            return binInt.substring(binInt.length()-8);
         } else {
-            return binInt;
+            return String.format("%08d", Integer.parseInt(binInt));
             //   return String.format("%08d"+ stringLength + binInt);
         }
     }
 
     // TODO Schreiben Sie die Methoden für short und char
-    public static String toBinaryStringShort(short valueShort) {
-        String binInt = Integer.toBinaryString(new Integer(valueShort));
+    private static String toBinaryStringShort(short valueShort) {
+        String binInt = Integer.toBinaryString(valueShort);
 
         if (valueShort < 0) {
             return binInt.substring(15, 32);
@@ -123,8 +125,13 @@ public class BasetypeRanges {
     // Welches Ergebnis beobachten Sie? Erklären Sie das Ergebnis
     public static void floatPrecision() {
         for (int i = 1; i <= 100; i++) {
-            double q = 1.0 / i;
-            double p = q * i;
+            System.out.println("i ist: "+i);
+
+            double q = 1.0 / i; // q = 1.0 / 10**2 = 1.0*10**-2= 0.01
+            System.out.println("q ist: "+q);
+            double p = q * i; // p = 1.0*10**-2 * 10**2
+            System.out.println("p ist: "+p);
+
             if (p != 1.0) {
                 System.out.printf("%d %1.3f\n", i, p);
             }

@@ -4,9 +4,7 @@
     <list default="true" id="5d8d779d-65d2-4725-a807-62b5be1664ef" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/untitled1/a12/BasetypeRanges.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled1/a12/BasetypeRanges.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled1/a14/BasetypeReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled1/a14/BasetypeReader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/a12/BasetypeRanges.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/a12/BasetypeRanges.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/a14/BasetypeReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/a14/BasetypeReader.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +51,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.BasetypeReader">
+  <component name="RunManager" selected="Application.BasetypeRanges">
     <configuration name="BasetypeRanges" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="a12.BasetypeRanges" />
       <module name="untitled1" />
@@ -95,8 +93,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.BasetypeReader" />
         <item itemvalue="Application.BasetypeRanges" />
+        <item itemvalue="Application.BasetypeReader" />
         <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
