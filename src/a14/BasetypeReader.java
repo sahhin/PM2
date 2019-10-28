@@ -1,33 +1,60 @@
 package a14;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Hashtable;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class BasetypeReader {
 
     public static void main(String[] args) {
-        countBaseTypes();
+        try {
+            Scanner scan = new Scanner(new File(args[0]));
+            scan.useLocale(Locale.US);
+            scan.useDelimiter(" ");
+            countBaseTypes(scan);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
-    private static void countBaseTypes() {
-        Hashtable<String, Integer> ht = new Hashtable<String, Integer>();
-        ht.put("bool", 0);
+    private static void countBaseTypes(Scanner scan) {
+        int bool_ct = 0;
+        int byte_ct = 0;
+        int short_ct = 0;
+        int int_ct = 0;
+        int long_ct = 0;
+        int float_ct = 0;
+        int double_ct = 0;
+        int notclassified_ct = 0;
 
-        Scanner scanner = new Scanner("false null null null null false 9 null null 8 null null null null null null null null null null null null 9.325229460672683E307 1.1790321132094712E307 null null null 10 1.1220764261495076E308 null null null null null null 13 null 12 null null null null 7.964385643804441E307 false null 1.0676530560771349E308 11 14 ");
-        scanner.useDelimiter(" ");
 
-        while (scanner.hasNext()) {
-            String scan = scanner.next();
-            System.out.println(scan);
+        while (scan.hasNext()) {
 
-            if (Integer.parseInt(scan) > 0){
-                int bool = ht.get("bool");
-                System.out.println("HIEr");
+            if (scan.hasNextBoolean()) {
+                bool_ct++;
+            } else if (scan.hasNextByte()) {
+                byte_ct++;
+            } else if (scan.hasNextShort()) {
+                short_ct++;
+            } else if (scan.hasNextInt()) {
+                int_ct++;
+            } else if (scan.hasNextLong()) {
+                long_ct++;
+            } else if (scan.hasNextFloat()) {
+                float_ct++;
+            } else if (scan.hasNextDouble()) {
+                double_ct++;
+            } else {
+                notclassified_ct++;
             }
-
+            scan.next();
 
         }
-        System.out.println(ht);
+        System.out.printf("bool:%d byte:%d short:%d int:%d long:%d float:%d double:%d not classified:%d\n",
+                bool_ct, byte_ct, short_ct, int_ct, long_ct, float_ct, double_ct, notclassified_ct);
     }
 }
 
