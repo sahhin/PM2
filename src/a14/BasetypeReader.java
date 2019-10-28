@@ -9,15 +9,10 @@ import java.util.Scanner;
 public class BasetypeReader {
 
     public static void main(String[] args) {
-        try {
-            Scanner scan = new Scanner(new File(args[0]));
+        Scanner scan = new Scanner(System.in);
             scan.useLocale(Locale.US);
             scan.useDelimiter(" ");
             countBaseTypes(scan);
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 
     private static void countBaseTypes(Scanner scan) {

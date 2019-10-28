@@ -2,11 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d8d779d-65d2-4725-a807-62b5be1664ef" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/a11/BaseCounterTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/a11/LimitedCounterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/untitled1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/untitled1.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basetype.data" beforeDir="false" afterPath="$PROJECT_DIR$/basetype.data" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled1/a11/BaseCounter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled1/a11/BaseCounterTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled1/a11/Counter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled1/a11/LimitedCounter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled1/a11/LimitedCounterTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled1/a11/StepCounter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled1/a11/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled1/a12/BasetypeRanges.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled1/a13/BasetypeGenerator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled1/a14/BasetypeReader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled1/a15/RingReader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/a11/BaseCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/a11/BaseCounter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/a11/Counter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/a11/Counter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/a11/LimitedCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/a11/LimitedCounter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/a11/LimitedCounterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/a11/LimitedCounterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/a11/StepCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/a11/StepCounter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/a12/BasetypeRanges.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/a12/BasetypeRanges.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/a13/BasetypeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/a13/BasetypeGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/a14/BasetypeReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/a14/BasetypeReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/a15/RingReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/a15/RingReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pm2.iml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +72,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
@@ -77,9 +96,76 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.LimitedCounterTest.inc">
-    <configuration name="BaseCounterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="untitled1" />
+  <component name="RunManager" selected="Application.RingReader">
+    <configuration name="BaseCounter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="a11.BaseCounter" />
+      <module name="pm2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="a11.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BasetypeGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="a13.BasetypeGenerator" />
+      <module name="pm2" />
+      <option name="PROGRAM_PARAMETERS" value="10" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="a13.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LimitedCounter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="a11.LimitedCounter" />
+      <module name="pm2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="a11.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RingReader" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="a15.RingReader" />
+      <module name="pm2" />
+      <option name="PROGRAM_PARAMETERS" value="10" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="a15.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StepCounter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="a11.StepCounter" />
+      <module name="pm2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="a11.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LimitedCounterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="pm2" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="a11.*" />
@@ -87,83 +173,74 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="a11" />
-      <option name="MAIN_CLASS_NAME" value="a11.BaseCounterTest" />
+      <option name="MAIN_CLASS_NAME" value="a11.LimitedCounterTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BaseCounterTest.inc" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="untitled1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="a11.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="a11" />
-      <option name="MAIN_CLASS_NAME" value="a11.BaseCounterTest" />
-      <option name="METHOD_NAME" value="inc" />
-      <option name="TEST_OBJECT" value="method" />
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <module name="pm2" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BaseCounterTest.start" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="untitled1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="a11.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="a11" />
-      <option name="MAIN_CLASS_NAME" value="a11.BaseCounterTest" />
-      <option name="METHOD_NAME" value="start" />
-      <option name="TEST_OBJECT" value="method" />
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <module name="pm2" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LimitedCounterTest.inc" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="untitled1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="a11.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="a11" />
-      <option name="MAIN_CLASS_NAME" value="a11.LimitedCounterTest" />
-      <option name="METHOD_NAME" value="inc" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LimitedCounterTest.start" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="untitled1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="a11.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="a11" />
-      <option name="MAIN_CLASS_NAME" value="a11.LimitedCounterTest" />
-      <option name="METHOD_NAME" value="start" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+    <list>
+      <item itemvalue="Application.RingReader" />
+      <item itemvalue="Application.StepCounter" />
+      <item itemvalue="Application.BaseCounter" />
+      <item itemvalue="Application.LimitedCounter" />
+      <item itemvalue="Application.BasetypeGenerator" />
+      <item itemvalue="JUnit.LimitedCounterTest" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LimitedCounterTest.inc" />
-        <item itemvalue="JUnit.LimitedCounterTest.start" />
-        <item itemvalue="JUnit.BaseCounterTest" />
-        <item itemvalue="JUnit.BaseCounterTest.inc" />
-        <item itemvalue="JUnit.BaseCounterTest.start" />
+        <item itemvalue="Application.BasetypeGenerator" />
+        <item itemvalue="Application.LimitedCounter" />
+        <item itemvalue="Application.StepCounter" />
+        <item itemvalue="JUnit.LimitedCounterTest" />
+        <item itemvalue="Application.BaseCounter" />
       </list>
     </recent_temporary>
   </component>
@@ -199,5 +276,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/a11/LimitedCounter.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

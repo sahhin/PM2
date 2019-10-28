@@ -1,7 +1,7 @@
 package a11;
 
 public abstract class Counter {
-    public abstract void inc();
+    public abstract Counter inc();
 
     public abstract int start();
 

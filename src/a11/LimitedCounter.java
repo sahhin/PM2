@@ -3,15 +3,11 @@ package a11;
 public class LimitedCounter extends BaseCounter {
     private int limit;
     private int num_inc;
-    private int start;
-    private int count;
-
 
     public LimitedCounter(int start, int limit) {
         super(start);
         this.limit = limit;
-        this.start = start;
-        num_inc = 0;
+        this.num_inc = 0;
     }
 
     private LimitedCounter() {
@@ -20,12 +16,12 @@ public class LimitedCounter extends BaseCounter {
 
 
     @Override
-    public void inc() {
-        if ((tally() + 1) > this.limit) {
-            this.count = this.start;
+    public Counter inc() {
+        if (tally() + 1 > this.limit) {
+            this.count = this.start();
         }
-        this.numInc();
-        super.inc();
+        this.num_inc++;
+        return super.inc();
     }
 
     @Override
@@ -36,19 +32,23 @@ public class LimitedCounter extends BaseCounter {
     @Override
     public void reset() {
         super.reset();
+        this.num_inc = 0;
     }
 
     @Override
-    public int numInc(){
-        return super.numInc();
+    public int numInc() {
+        return this.num_inc;
     }
 
     public static void main(String[] args) {
-        LimitedCounter lm = new LimitedCounter(0,2);
-        lm.inc(); lm.inc();lm.inc();
+        LimitedCounter lm = new LimitedCounter(0, 2);
+        lm.inc();
+        lm.inc();
+        lm.inc();
         System.out.println(lm);
         lm.reset();
-        lm.inc();lm.inc();
+        lm.inc();
+        lm.inc();
         System.out.println(lm);
     }
 }

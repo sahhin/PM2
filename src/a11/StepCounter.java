@@ -2,14 +2,10 @@ package a11;
 
 public class StepCounter extends BaseCounter {
 
-    private int start;
-    private int count;
     private int step;
 
     public StepCounter(int start, int step) {
         super(start);
-        this.start = start;
-        this.count = start;
         this.step = step;
     }
 
@@ -18,13 +14,19 @@ public class StepCounter extends BaseCounter {
     }
 
     @Override
-    public void inc() {
-        count += this.step;
+    public Counter inc() {
+        this.count += this.step;
+        return this;
     }
 
     @Override
     public int numInc() {
         return super.numInc() / this.step;
+    }
+
+    @Override
+    public int tally() {
+        return this.count;
     }
 
     public static void main(String[] args) {

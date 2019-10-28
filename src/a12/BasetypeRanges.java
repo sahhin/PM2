@@ -20,10 +20,10 @@ public class BasetypeRanges {
 
         //  TODO Aufruf der beiden add-Methoden, die einen Überlauf erzeugen
         // neg + neg = pos Ergebnis
-        System.out.println(Short.MIN_VALUE + " + " + "(" + Short.MIN_VALUE + ") = " + addShort(Short.MIN_VALUE, Short.MIN_VALUE));
+        System.out.println(Short.MIN_VALUE + " + " + "(" + Short.MIN_VALUE + ") = " + addShort(Short.MIN_VALUE, (short)-1));
 
         // pos + pos = neg Ergebnis
-        System.out.println(Short.MAX_VALUE + " + " + Short.MAX_VALUE + " = " + addShort(Short.MAX_VALUE, Short.MAX_VALUE));
+        System.out.println(Short.MAX_VALUE + " + " + Short.MAX_VALUE + " = " + addShort(Short.MAX_VALUE, (short)1));
 
         // pos + pos = neg Ergebnis
         System.out.println(Byte.MAX_VALUE + " + " + Byte.MAX_VALUE + " = " + addByte(Byte.MAX_VALUE, Byte.MAX_VALUE));
@@ -76,7 +76,7 @@ public class BasetypeRanges {
     }
 
     private static boolean overflowAddByte(byte b1, byte b2) {
-        short sumBytes = addByte(b1, b2);
+        int sumBytes =  b1 + b2;
         return (sumBytes >= Byte.MIN_VALUE) && (sumBytes <= Byte.MAX_VALUE);
     }
 

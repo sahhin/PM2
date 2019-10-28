@@ -12,7 +12,7 @@ import java.util.Random;
 public class BasetypeGenerator {
 
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
-        int n = 10; // TODO hier die Integergröße aus den Eingabeparametern lesen
+        int n = Integer.parseInt(args[0]); // TODO hier die Integergröße aus den Eingabeparametern lesen
         // Gegeben NICHT ÄNDERN!!
         Object[] collector = generate(n);
 
@@ -52,7 +52,7 @@ public class BasetypeGenerator {
         }
         startIndex = shorts;
         for (int j = startIndex; j < startIndex + ints; j++) {
-            collector[j] = random(rand, Integer.MIN_VALUE, Integer.MAX_VALUE);
+            collector[j] = random(rand,Short.MAX_VALUE+1, Integer.MAX_VALUE);
         }
         startIndex = ints;
         for (int j = startIndex; j < startIndex + longs; j++) {
@@ -68,7 +68,7 @@ public class BasetypeGenerator {
         }
         startIndex = doubles;
         for (int j = startIndex; j < startIndex + notClassifiedOnes; j++) {
-            collector[j] = Integer.toString(j);
+            collector[j] = "Str"+1;
         }
 
         // Gegeben NICHT ÄNDERN!!
@@ -91,7 +91,7 @@ public class BasetypeGenerator {
     }
 
     private static int random(Random rand, int a, int b) {
-        return (int) rand.nextInt()*(b-a);
+        return (int) rand.nextInt(b-a+1)+a;
     }
 
     private static long random(Random rand, long a, long b) {

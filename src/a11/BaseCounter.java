@@ -2,21 +2,21 @@ package a11;
 
 public  class BaseCounter extends Counter{
     private int start;
-    private int count;
+    protected int count;
 
     public BaseCounter(int start){
-        this.count = start;
         this.start = start;
+        this.count = start;
     }
 
     public BaseCounter(){
         this(0);
-        this.count = start;
     }
 
     @Override
-    public void inc() {
+    public Counter inc() {
         this.count++;
+        return this;
     }
 
     @Override
@@ -26,7 +26,7 @@ public  class BaseCounter extends Counter{
 
     @Override
     public int tally() {
-        return count;
+        return this.count;
     }
 
     @Override
