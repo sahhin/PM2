@@ -10,7 +10,7 @@ public  class BaseCounter extends Counter{
     }
 
     public BaseCounter(){
-        this(30);
+        this(0);
         this.count = start;
     }
 
@@ -26,7 +26,7 @@ public  class BaseCounter extends Counter{
 
     @Override
     public int tally() {
-        return this.count;
+        return count;
     }
 
     @Override
@@ -37,6 +37,9 @@ public  class BaseCounter extends Counter{
     public static void main(String[] args) {
         BaseCounter bc = new BaseCounter(4);
         bc.inc();
+        bc.inc();bc.inc();
+        System.out.println(bc);
+        bc.reset();
         bc.inc();bc.inc();
         System.out.println(bc);
     }
