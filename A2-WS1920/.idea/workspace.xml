@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="39d10931-15b6-4075-ba30-35f33be711f2" name="Default Changelist" comment="" />
+    <list default="true" id="39d10931-15b6-4075-ba30-35f33be711f2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A2-WS1920.iml" beforeDir="false" afterPath="$PROJECT_DIR$/A2-WS1920.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/A2-WS1920/utils/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A2-WS1920/utils/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/A2-WS1920/utils/WikipediaComicFilmParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A2-WS1920/utils/WikipediaComicFilmParser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/WikipediaComicFilmParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/WikipediaComicFilmParser.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,12 +26,17 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1THuTZla4waxQALHyQ6esz1Dyxy" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1572336482880" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Sahin/A2-WS1920" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -54,10 +67,25 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Application.WikipediaComicFilmParser">
+    <configuration name="ComicFilmParser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="parser.ComicFilmParser" />
+      <module name="A2-WS1920" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="utils.Test" />
-      <module name="C:\Users\AugustinaBonesso\Desktop\PM2\A2-WS1920\ressources\Liste von Comicverfilmungen.html" />
+      <module name="A2-WS1920" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="utils.*" />
@@ -77,7 +105,7 @@
     </configuration>
     <configuration name="WikipediaComicFilmParser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="utils.WikipediaComicFilmParser" />
-      <module name="C:\Users\AugustinaBonesso\Desktop\PM2\A2-WS1920\ressources\Liste von Comicverfilmungen.html" />
+      <module name="A2-WS1920" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="utils.*" />
@@ -148,10 +176,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Test" />
+      <item itemvalue="Application.TestingDateTimeAPI" />
+      <item itemvalue="Application.WikipediaComicFilmParser" />
+      <item itemvalue="Application.YearInterval" />
+      <item itemvalue="Application.ComicFilmParser" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Test" />
         <item itemvalue="Application.WikipediaComicFilmParser" />
+        <item itemvalue="Application.Test" />
+        <item itemvalue="Application.ComicFilmParser" />
         <item itemvalue="Application.YearInterval" />
         <item itemvalue="Application.TestingDateTimeAPI" />
       </list>
@@ -180,10 +216,22 @@
       <workItem from="1573808397615" duration="2038000" />
       <workItem from="1573841626200" duration="13324000" />
       <workItem from="1573907561870" duration="7101000" />
+      <workItem from="1573915752691" duration="10699000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

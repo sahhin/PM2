@@ -3,10 +3,9 @@ package utils;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.nio.file.Paths;
+import java.util.*;
+import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.net.URL;
@@ -15,15 +14,15 @@ import java.net.URL;
  * Diese Klasse liest und wertet Dateien über Scanner aus
  * und verwaltet eine Leste von Objekte der Klasse Year und Film
  *
- * @author Maria Agustina Bonesso
+ * @author Maria Agustina Bonesso, Sahin Tekes
  */
 
 public class WikipediaComicFilmParser {
 
-    private Pattern tableBegin = Pattern.compile("<h3><span id=\"0\\.E2\\.80\\.939\"></span><span class=\"mw-headline\" id=\"0–9\">.*</h3>");
+
+    public static Pattern tableBegin = Pattern.compile("<h2><span class=\"mw-headline\" id=\"Realfilm-Adaptionen\">Realfilm-Adaptionen</span>.*?</h2>");
     private Pattern tableEnd = Pattern.compile("<h2><span class=\"mw-headline\" id=\"Anmerkung_zu_Trickfilmen_und_Comiczeichnern\">Anmerkung zu Trickfilmen und Comiczeichnern</span>.*?</h2>");
-    private Pattern comicFilmTable = Pattern.compile("<tr>(<td.*>(<a.*>)?(.*)(/||2)?</td>)(<td.*>(||2)?(.*)(/||2)?</td>)+</tr>");
-    private Pattern onlyFilmTable = Pattern.compile("<tr>(<td.*>(<a.*>)?(.*)(/||2)?</td>){1}</tr>");
+    public static Pattern comicFilmTableRegex = Pattern.compile("<tr><td(\\srowspan=(\"(\\w)\"))?>(<a.*>)?(.*)+(</a>)?</td>(<td>(<a.*>)?(.*)+(</a>)?</td>)?</tr>");
     private Scanner wikiComicFilmScanner = null;
 
 
@@ -43,21 +42,43 @@ public class WikipediaComicFilmParser {
     }
 
 
-    public Map<String, List<String>> contentToFilm() {
-        Map<String, List<String>> threeDeeMap = new HashMap<>();
+    public Iterable<String> contentToFilm() {
+        List<String> comicName = new ArrayList<String>();
 
         wikiComicFilmScanner.useDelimiter(tableBegin);
-        if (wikiComicFilmScanner.hasNextLine()) {
-            wikiComicFilmScanner.next();
+        while (wikiComicFilmScanner.hasNext()) {
+           comicName.add(wikiComicFilmScanner.next());
         }
 
-        wikiComicFilmScanner.useDelimiter(tableEnd);
-        if (wikiComicFilmScanner.hasNext()) {
-            String comicFilm = wikiComicFilmScanner.next();
-            Matcher filmComicTable = comicFilmTable.matcher(comicFilm);
-        }
+//        wikiComicFilmScanner.useDelimiter(tableBegin);
+//        if (wikiComicFilmScanner.hasNextLine()) {
+//            wikiComicFilmScanner.next();
+//        }
+//
+//        wikiComicFilmScanner.useDelimiter(tableEnd);
+//
+//        if (wikiComicFilmScanner.hasNext()) {
+//            String allComicFilmTable = wikiComicFilmScanner.next();
+//            Matcher comicFilmMatcher = comicFilmTableRegex.matcher(allComicFilmTable);
+//
+//            while (comicFilmMatcher.find()) {
+//                comicName.add(comicFilmMatcher.toMatchResult());
+//            }
+//
+//        }
+//        wikiComicFilmScanner.next();
 
-        return null;
+        return comicName;
+    }
+
+    private static final String RESSOURCE_DIR = "out\\production\\A2-WS1920";
+    public static void main(String[] args) throws IOException {
+
+        Path wikiComicFilms = Paths.get(RESSOURCE_DIR + "\\Liste von Comicverfilmungen.html");
+
+        WikipediaComicFilmParser sc = new WikipediaComicFilmParser("file:///" + wikiComicFilms.toAbsolutePath());
+
+        System.out.println(sc.contentToFilm());
     }
 
 }

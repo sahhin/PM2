@@ -23,14 +23,15 @@ public class Test {
                 "</td></tr>";
         String html3 = "<tr><td>47:an Löken blåser på (1972)" +
                 "</td></tr>";
-        Pattern comicFilmTable = Pattern.compile("<tr>(<td.*>(<a.*>)?(.*)(/||2)?</td>)(<td.*>(||2)?(.*)(/||2)?</td>)+</tr>");
-        Pattern regexFilm = Pattern.compile("<tr>(<td.*>(<a.*>)?(.*)(/||2)?</td>){1}</tr>");
-        System.out.println(htmlText2.matches(String.valueOf(comicFilmTable)));
+//        Pattern comicFilmTable = Pattern.compile("<tr>(<td(\\srowspan= (\"(\\d)\"))?>(<a.*>)?(.*)(</a>)?</td>)(<td.*>(</a>)?(.*)(</a>)?</td>)?</tr>");
+        Pattern comicFilmTable = Pattern.compile("<tr>(<td(\\srowspan=(\"(\\w)\"))?>(<a.*>)?(.*)+(</a>)?</td>)+</tr>");
+        Matcher matcher = comicFilmTable.matcher(htmlText2);
+       // int rowspan = Integer.parseInt(matcher.group(4));
         System.out.println(html3.matches(String.valueOf(comicFilmTable)));
-        System.out.println(html3.matches(String.valueOf(regexFilm)));
-        //     System.out.println(htmlText.matches(String.valueOf(comicFilmTable)));
+
 
     }
+}
 
 //        try (Scanner scanner = new Scanner(new File(RESOURCE_DIR))) {
 //            List<MatchResult> results = new ArrayList<MatchResult>();
@@ -62,4 +63,5 @@ public class Test {
 //        }
 //    }
 
-}
+
+
