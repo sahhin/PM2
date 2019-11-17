@@ -12,14 +12,13 @@ public class YearInterval implements Iterable<Year> {
         this.end = end;
     }
 
-    public YearInterval(Year start) {
-        this(start, start);
-    }
-
     public static void main(String[] args) {
-        System.out.printf("Hier");
+
     }
 
+    public YearInterval(Year start) {
+        this(start,start);
+    }
     public boolean contains(Year y) {
         return start.compareTo(y) <= 0 && y.compareTo(end) <= 0;
     }
@@ -58,7 +57,7 @@ public class YearInterval implements Iterable<Year> {
     @Override
     public String toString() {
         if (start.equals(end)) return start.toString();
-        return String.format("(%d,%d)", start.getValue(), end.getValue());
+        return String.format("(%d,%d)",start.getValue(),end.getValue());
     }
 
 }
