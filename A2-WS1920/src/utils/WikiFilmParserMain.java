@@ -3,19 +3,22 @@ package utils;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class WikiFilmParserMain {
     static final String RESSOURCE_DIR = "out\\production\\A2-WS1920";
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ParseException {
         Path wikiComicHTML = Paths.get(RESSOURCE_DIR + "\\Liste von Comicverfilmungen.html");
         WikiFilmParser wiki = new WikiFilmParser("file:///" + wikiComicHTML.toAbsolutePath());
 //        System.out.println(wiki.contentTo3DFilmsPerYear());
-        System.out.println(wiki.tryReader());
+        System.out.println(wiki.readTableComicFilm());
+
 //        long start = System.currentTimeMillis();
 //        Map<String, List<String>> threeDeeMap1 = wiki.contentTo3DFilmsPerYear();
 //        System.out.println("Duration: " + (System.currentTimeMillis() - start) + "ms");

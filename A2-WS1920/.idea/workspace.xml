@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39d10931-15b6-4075-ba30-35f33be711f2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/A2-WS1920/utils/WikiFilmParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A2-WS1920/utils/WikiFilmParser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/A2-WS1920/utils/WikiFilmParserMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A2-WS1920/utils/WikiFilmParserMain.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/WikiFilmParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/WikiFilmParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/WikiFilmParserMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/WikiFilmParserMain.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,6 +31,7 @@
   <component name="ProjectId" id="1Ti1PjqnN1T58SRKMxz6lZaMSyT" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1572336482880" />
@@ -41,7 +45,15 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="utils" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -134,6 +146,7 @@
       <workItem from="1573937433877" duration="30950000" />
       <workItem from="1574027256781" duration="13263000" />
       <workItem from="1574040699506" duration="108000" />
+      <workItem from="1574062091073" duration="8528000" />
     </task>
     <servers />
   </component>
@@ -145,26 +158,12 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>10</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>
