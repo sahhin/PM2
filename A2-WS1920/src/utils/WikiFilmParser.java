@@ -28,7 +28,7 @@ public class WikiFilmParser {
 
     private Pattern comicFilm = Pattern.compile("<td.*?>(.*)");
 
-    private Pattern rowspanRegex = Pattern.compile("<td(\\srowspan=\"(\\d)\")>(.*)");
+    private Pattern rowspanRegex = Pattern.compile("<td(\\srowspan=\"(\\d)\")?>(.*)");
 
     private Pattern onlyFilm = Pattern.compile("<td>(.*)(\\((.*)?((\\d\\d\\d\\d)?(-)?(\\d\\d\\d\\d)+\\)+)+)");
 
@@ -116,6 +116,85 @@ public class WikiFilmParser {
         return comicFilmsMap;
     }
 
+    public Map<String, Map<YearInterval, List<String>>> readTableComicRowspan() throws ParseException {
+        Map<String, Map<YearInterval, List<String>>> comicFilmsMap = new HashMap<>();
+
+        wikiFilmScanner.useDelimiter(tableBegin);
+        if (wikiFilmScanner.hasNext()) {
+            wikiFilmScanner.next();
+        }
+        while (wikiFilmScanner.hasNextLine()) {
+            String next = wikiFilmScanner.nextLine();
+            Pattern rowspanRegex2 = Pattern.compile("<td(\\srowspan=\"(\\d)\")?>(.*)");
+
+            //matcher
+            Matcher rowspanMatcher2 = rowspanRegex2.matcher(next);
+
+
+            if (tableEnd.matcher(next).find()) {
+
+                System.out.println("END OF COMIC FILMS");
+                break;
+
+            } else if (rowspanMatcher2.find()) { //is a film
+                String comicName = rowspanMatcher2.group(3);
+                String rowspan = rowspanMatcher2.group(2);
+                comicName = comicName.replaceAll("<a.*?>|</a>|<i>|</i>", "");
+
+                    comicFilmsMap.put(comicName, new HashMap<>());
+
+
+                if (rowspan != null) {
+                    int rowspanNum = new Integer(rowspan);
+
+                    for (int i = 0; i <= rowspanNum; i++) {
+                        if (wikiFilmScanner.hasNextLine()) {
+                            String nextFilm = wikiFilmScanner.nextLine();
+
+                            while (!onlyFilm.matcher(nextFilm).find()) {
+                                nextFilm = wikiFilmScanner.nextLine();
+                            }
+                            Matcher onlyFilm2 = onlyFilm.matcher(nextFilm);
+                            if (onlyFilm2.find()) {
+                                String filmName = onlyFilm2.group(1);
+                                String yearFilm = onlyFilm2.group(2);
+                                yearFilm = yearFilm.replaceAll("[^0-9]", "");
+                                YearInterval yearIntervalObj = checkYear(yearFilm);
+
+                                if (!comicFilmsMap.get(comicName).containsKey(yearIntervalObj)) {
+                                    comicFilmsMap.get(comicName).put(yearIntervalObj, new ArrayList<>());
+                                }
+                                comicFilmsMap.get(comicName).get(yearIntervalObj).add(filmName.replaceAll("<a.*?>|</a>|<i>|</i>", "").trim());
+                            }
+                        }
+                        System.out.println();
+                    }
+                } else {
+                    if (wikiFilmScanner.hasNextLine()) {
+                        String nextFilm = wikiFilmScanner.nextLine();
+                        while (!onlyFilm.matcher(nextFilm).find()) {
+                            nextFilm = wikiFilmScanner.nextLine();
+                        }
+                        Matcher onlyFilm2 = onlyFilm.matcher(nextFilm);
+                        if (onlyFilm2.find()) {
+                            String filmName = onlyFilm2.group(1);
+                            String yearFilm = onlyFilm2.group(2);
+                            yearFilm = yearFilm.replaceAll("[^0-9]", "");
+                            YearInterval yearIntervalObj = checkYear(yearFilm);
+                            if (!comicFilmsMap.get(comicName).containsKey(yearIntervalObj)) {
+                                comicFilmsMap.get(comicName).put(yearIntervalObj, new ArrayList<>());
+                            }
+                            comicFilmsMap.get(comicName).get(yearIntervalObj).add(filmName.replaceAll("<a.*?>|</a>|<i>|</i>", "").trim());
+                        }
+                    }
+                }
+            }
+        }
+        return comicFilmsMap;
+
+    }
+
+
     public YearInterval checkYear(String year) {
         Year yearBegin = null;
         YearInterval yearIntervalObj = null;
@@ -129,5 +208,31 @@ public class WikiFilmParser {
         }
 
         return yearIntervalObj;
+    }
+
+    public static String ppMap(Map<String, Map<YearInterval, List<String>>> comicMap) {
+
+        for (Map.Entry<String, Map<YearInterval, List<String>>> entry : comicMap.entrySet()) {
+            System.out.printf("%-10s->", entry.getKey());
+            ppMap(entry.getValue(), 6);
+        }
+        return "!";
+    }
+
+    public static String ppMap(Map<YearInterval, List<String>> comicFilms, int tab) {
+        for (Map.Entry<YearInterval, List<String>> entry : comicFilms.entrySet()) {
+            boolean start = true;
+            for (String film : entry.getValue()) {
+                if (start) {
+                    System.out.printf("\n%" + (tab) + "s" + "%-8s->%s", " ", entry.getKey(), entry.getValue());
+                    start = false;
+                } else {
+                    System.out.printf("%" + (tab + 8 + 2) + "s%s", " ", film);
+                }
+            }
+            //System.out.println();
+        }
+        System.out.println();
+        return "!";
     }
 }
