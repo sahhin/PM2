@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.*;
+import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -67,6 +68,63 @@ public class WikiFilmParser {
      * @return
      * @throws ParseException
      */
+
+    public Map<String, Map<YearInterval, List<String>>> readTableComicFilm2() throws ParseException {
+        Map<String, Map<YearInterval, List<String>>> comicFilmsMap = new HashMap<>();
+        Pattern comicFilmRegex = Pattern.compile("</td></tr>.*?<tr>", Pattern.MULTILINE | Pattern.DOTALL);
+        Pattern rowspanRegex2 = Pattern.compile("<td(\\srowspan=\"(\\d)\")?>(.*)</td>.*?<td>(.*)(\\((.*)?((\\d\\d\\d\\d)?(-)?(\\d\\d\\d\\d)+\\)+)+)", Pattern.MULTILINE | Pattern.DOTALL);
+        Pattern filmRegex = Pattern.compile("");
+        Pattern findFIlm = Pattern.compile("<td>(.*)");
+
+
+        wikiFilmScanner.useDelimiter(tableBegin);
+        wikiFilmScanner.useDelimiter(comicFilmRegex);
+        if (wikiFilmScanner.hasNext()) {
+            wikiFilmScanner.next();
+        }
+        while (wikiFilmScanner.hasNext()) {
+            String next = wikiFilmScanner.next();
+            Matcher matcherComicFIlm = rowspanRegex2.matcher(next);
+
+            if (matcherComicFIlm.find()) {
+//                for (int i = 0; i <= matcherComicFIlm.groupCount(); i++) {
+//                    System.out.println(i + ":" + matcherComicFIlm.group(i));
+//                }
+                String comicName = matcherComicFIlm.group(3);
+                String filmName = matcherComicFIlm.group(4);
+                String rowspan = matcherComicFIlm.group(2);
+                filmName = filmName.replaceAll("<a.*?>|</a>|<i>|</i>", "");
+                comicName = comicName.replaceAll("<a.*?>|</a>|<i>|</i>", "");
+
+
+                comicFilmsMap.put(comicName, new HashMap<>());
+
+                if (rowspan != null) {
+                    int rowspanNum = new Integer(rowspan);
+
+                    wikiFilmScanner.findWithinHorizon(findFIlm, 0);
+                    MatchResult mr = wikiFilmScanner.match();
+                    for (int i = 1; i <= mr.groupCount(); i++) {
+
+                        System.out.println("horizon" + i + ":" + mr.group(i));
+                    }
+                } else {
+                    String yearFilm = matcherComicFIlm.group(5);
+                    yearFilm = yearFilm.replaceAll("[^0-9]", "");
+
+                    YearInterval yearIntervalObj = checkYear(yearFilm);
+                    if (!comicFilmsMap.get(comicName).containsKey(yearIntervalObj)) {
+                        comicFilmsMap.get(comicName).put(yearIntervalObj, new ArrayList<>());
+                    }
+                    comicFilmsMap.get(comicName).get(yearIntervalObj).add(filmName.trim());
+                }
+
+            }
+        }
+        return comicFilmsMap;
+    }
+
+
     public Map<String, Map<YearInterval, List<String>>> readTableComicFilm() throws ParseException {
         String keyReader = "";
         Map<String, Map<YearInterval, List<String>>> comicFilmsMap = new HashMap<>();
@@ -75,6 +133,7 @@ public class WikiFilmParser {
         if (wikiFilmScanner.hasNext()) {
             wikiFilmScanner.next();
         }
+
         while (wikiFilmScanner.hasNextLine()) {
             String next = wikiFilmScanner.nextLine();
 
@@ -116,6 +175,7 @@ public class WikiFilmParser {
         return comicFilmsMap;
     }
 
+
     public Map<String, Map<YearInterval, List<String>>> readTableComicRowspan() throws ParseException {
         Map<String, Map<YearInterval, List<String>>> comicFilmsMap = new HashMap<>();
 
@@ -125,7 +185,7 @@ public class WikiFilmParser {
         }
         while (wikiFilmScanner.hasNextLine()) {
             String next = wikiFilmScanner.nextLine();
-            Pattern rowspanRegex2 = Pattern.compile("<td(\\srowspan=\"(\\d)\")?>(.*)");
+            Pattern rowspanRegex2 = Pattern.compile("<td(\\srowspan=\"(\\d)\")?>(.*)</td>.*?<td>(.*)");
 
             //matcher
             Matcher rowspanMatcher2 = rowspanRegex2.matcher(next);
@@ -141,13 +201,13 @@ public class WikiFilmParser {
                 String rowspan = rowspanMatcher2.group(2);
                 comicName = comicName.replaceAll("<a.*?>|</a>|<i>|</i>", "");
 
-                    comicFilmsMap.put(comicName, new HashMap<>());
+                comicFilmsMap.put(comicName, new HashMap<>());
 
 
                 if (rowspan != null) {
                     int rowspanNum = new Integer(rowspan);
 
-                    for (int i = 0; i <= rowspanNum; i++) {
+                    for (int i = 1; i <= rowspanNum; i++) {
                         if (wikiFilmScanner.hasNextLine()) {
                             String nextFilm = wikiFilmScanner.nextLine();
 
@@ -177,6 +237,7 @@ public class WikiFilmParser {
                         }
                         Matcher onlyFilm2 = onlyFilm.matcher(nextFilm);
                         if (onlyFilm2.find()) {
+
                             String filmName = onlyFilm2.group(1);
                             String yearFilm = onlyFilm2.group(2);
                             yearFilm = yearFilm.replaceAll("[^0-9]", "");

@@ -18,8 +18,8 @@ public class WikiFilmParserMain {
         WikiFilmParser wiki = new WikiFilmParser("file:///" + wikiComicHTML.toAbsolutePath());
 //        System.out.println(wiki.contentTo3DFilmsPerYear());
 //        System.out.println(wiki.ppMap(wiki.readTableComicFilm()));
-        System.out.println(wiki.ppMap(wiki.readTableComicRowspan()));
-
+//        System.out.println(wiki.readTableComicRowspan());
+        System.out.println(wiki.readTableComicFilm2());
 //        long start = System.currentTimeMillis();
 //        Map<String, List<String>> threeDeeMap1 = wiki.contentTo3DFilmsPerYear();
 //        System.out.println("Duration: " + (System.currentTimeMillis() - start) + "ms");
