@@ -33,6 +33,7 @@ public class WikiFilmParserMain {
             System.out.println(key);
             for (K o : aMap.get(key)) {
                 System.out.println(o);
+
             }
             System.out.println();
         }

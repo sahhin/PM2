@@ -6,6 +6,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/A2-WS1920/utils/WikiFilmParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A2-WS1920/utils/WikiFilmParser.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/A2-WS1920/utils/WikiFilmParserMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A2-WS1920/utils/WikiFilmParserMain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/A2-WS1920/utils/YearInterval$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A2-WS1920/utils/YearInterval$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/A2-WS1920/utils/YearInterval.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A2-WS1920/utils/YearInterval.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/WikiFilmParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/WikiFilmParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/WikiFilmParserMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/WikiFilmParserMain.java" afterDir="false" />
     </list>
@@ -45,8 +47,8 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
@@ -146,9 +148,8 @@
       <workItem from="1573937433877" duration="30950000" />
       <workItem from="1574027256781" duration="13263000" />
       <workItem from="1574040699506" duration="108000" />
-      <workItem from="1574062091073" duration="9506000" />
-      <workItem from="1574075673942" duration="2462000" />
-      <workItem from="1574109949003" duration="21474000" />
+      <workItem from="1574062091073" duration="10494000" />
+      <workItem from="1575298952036" duration="2274000" />
     </task>
     <servers />
   </component>

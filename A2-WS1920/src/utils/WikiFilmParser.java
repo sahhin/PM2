@@ -74,7 +74,7 @@ public class WikiFilmParser {
         Pattern comicFilmRegex = Pattern.compile("</td></tr>.*?<tr>", Pattern.MULTILINE | Pattern.DOTALL);
         Pattern rowspanRegex2 = Pattern.compile("<td(\\srowspan=\"(\\d)\")?>(.*)</td>.*?<td>(.*)(\\((.*)?((\\d\\d\\d\\d)?(-)?(\\d\\d\\d\\d)+\\)+)+)", Pattern.MULTILINE | Pattern.DOTALL);
         Pattern filmRegex = Pattern.compile("");
-        Pattern findFIlm = Pattern.compile("<td>(.*)");
+        Pattern findFIlm = Pattern.compile("<td>(.*)(\\((.*)?((\\d\\d\\d\\d)?(-)?(\\d\\d\\d\\d)+\\)+)+)");
 
 
         wikiFilmScanner.useDelimiter(tableBegin);
@@ -100,13 +100,21 @@ public class WikiFilmParser {
                 comicFilmsMap.put(comicName, new HashMap<>());
 
                 if (rowspan != null) {
-                    int rowspanNum = new Integer(rowspan);
+                    int rowspanNum = Integer.parseInt(rowspan);
 
                     wikiFilmScanner.findWithinHorizon(findFIlm, 0);
                     MatchResult mr = wikiFilmScanner.match();
-                    for (int i = 1; i <= mr.groupCount(); i++) {
+                    for (int i = 1; i <= mr.groupCount() ; i++) {
 
-                        System.out.println("horizon" + i + ":" + mr.group(i));
+                        String FilmName = mr.group(1).replaceAll("<a.*?>|</a>|<i>|</i>", "");
+                        String yearFilm = mr.group(2);
+                        yearFilm = yearFilm.replaceAll("[^0-9]", "");
+                        YearInterval yearIntervalObj = checkYear(yearFilm);
+                        if (!comicFilmsMap.get(comicName).containsKey(yearIntervalObj)) {
+                            comicFilmsMap.get(comicName).put(yearIntervalObj, new ArrayList<>());
+                        }
+                        comicFilmsMap.get(comicName).get(yearIntervalObj).add(filmName.trim());
+
                     }
                 } else {
                     String yearFilm = matcherComicFIlm.group(5);
