@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -29,7 +30,8 @@ public class WikipediaComicFilmScannerMain {
 
 		System.out.println(wp1.contentToComicMap());
 		ComicFilmEvaluator eval = new ComicFilmEvaluator();
-		System.out.println(eval.alleFilme());
+		//System.out.println(eval.filmeImJahr(Year.of(1936)));
+		System.out.println(eval.filmeImJahr(Year.of(2013)));
 		//wp1.echoPage();
 		//wp1.echoPage();
 		//Wikipedia3DFilmParser2 wp2 = new Wikipedia3DFilmParser2("file:///" + wiki3DFilmLocal.toAbsolutePath());
