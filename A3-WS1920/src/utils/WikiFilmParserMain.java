@@ -17,7 +17,7 @@ public class WikiFilmParserMain {
         Path wikiComicHTML = Paths.get(RESSOURCE_DIR + "\\Liste von Comicverfilmungen.html");
         WikiFilmParser wiki = new WikiFilmParser("file:///" + wikiComicHTML.toAbsolutePath());
 //        System.out.println(wiki.contentTo3DFilmsPerYear());
-        System.out.println(wiki.ppMap(wiki.readTableComicFilm()));
+        System.out.println(wiki.readTableComicFilm2());
 //        System.out.println(wiki.readTableComicRowspan());
         //      System.out.println(wiki.readTableComicFilm2());
 //        long start = System.currentTimeMillis();
@@ -33,7 +33,6 @@ public class WikiFilmParserMain {
             System.out.println(key);
             for (K o : aMap.get(key)) {
                 System.out.println(o);
-
             }
             System.out.println();
         }
