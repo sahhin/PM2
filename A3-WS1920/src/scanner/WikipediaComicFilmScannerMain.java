@@ -31,7 +31,7 @@ public class WikipediaComicFilmScannerMain {
         System.out.println(wp1.contentToComicMap());
         ComicFilmEvaluator eval = new ComicFilmEvaluator();
         //System.out.println(eval.filmeImJahr(Year.of(1936)));
-        System.out.println(eval.filmeImIntervall(new YearInterval(Year.of(1950), Year.of(2012))));
+        System.out.println(eval.comicMitDenMeistenVerfilmungen());
       //  System.out.println(eval.getYearComic("The Addams Family"));
         //wp1.echoPage();
         //wp1.echoPage();

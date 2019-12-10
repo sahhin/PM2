@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="39d10931-15b6-4075-ba30-35f33be711f2" name="Default Changelist" comment="" />
+    <list default="true" id="39d10931-15b6-4075-ba30-35f33be711f2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/A2-WS1920/eval/ComicFilmEvaluator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A2-WS1920/eval/ComicFilmEvaluator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/eval/ComicFilmEvaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/eval/ComicFilmEvaluator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scanner/WikipediaComicFilmScannerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scanner/WikipediaComicFilmScannerMain.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,6 +176,7 @@
       <workItem from="1575824153273" duration="28000" />
       <workItem from="1575824268133" duration="3124000" />
       <workItem from="1575827886392" duration="38690000" />
+      <workItem from="1575994607365" duration="920000" />
     </task>
     <servers />
   </component>
