@@ -88,9 +88,7 @@ public class ComicFilmEvaluator {
 
     // Alle Comics mit Präfix pre
     public List<String> alleComicsMitPraefix(String pre) {
-        ArrayList<String> allComicsList = new ArrayList<>();
-        comicFilmMap.keySet().stream().filter(y -> y.contains(pre)).forEach((k) -> allComicsList.add(k));
-        return allComicsList;
+        return null;
     }
 
     // Comic mit den meisten Verfilmungen
