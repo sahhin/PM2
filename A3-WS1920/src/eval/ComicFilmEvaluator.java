@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.time.Year;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ComicFilmEvaluator {
 
@@ -46,29 +47,41 @@ public class ComicFilmEvaluator {
     // Alle Filme in Jahr
 
     public List<String> filmeImJahr(Year year) {
-        YearInterval yearInterval2 = new YearInterval(year);
+        YearInterval intervalYear = new YearInterval(year);
 
-//        System.out.println(comicFilmMap.keySet().stream().map(e -> comicFilmMap.get(e).containsValue(year)).collect(Collectors.toList()));
-//        System.out.println(comicFilmMap.get("2 Guns"));
-//        System.out.println(new YearInterval(Year.of(2013)).equals(yearInterval2));
-//        System.out.println(comicFilmMap.get("2 Guns").containsKey(yearInterval2));
-        System.out.println(comicFilmMap.keySet().stream().filter(e -> comicFilmMap.get(e).containsKey(yearInterval2)).map(e -> comicFilmMap.get(e).get(yearInterval2)).collect(Collectors.toList()));
+        return comicFilmMap.keySet().stream().filter(e -> comicFilmMap.get(e).containsKey(intervalYear)).map(e -> comicFilmMap.get(e).get(intervalYear).toString())
+                .collect(Collectors.toList());
 
-        return null;
+    }
+
+    public ArrayList<YearInterval> getYearComic(String comic) {
+        ArrayList<YearInterval> yearFilmList = new ArrayList<>();
+
+        comicFilmMap.get(comic).forEach((k, v) -> yearFilmList.add(k));
+        return yearFilmList;
     }
 
     // Alle Filme im Intervall
     public List<String> filmeImIntervall(YearInterval interval) {
+
+        System.out.println(comicFilmMap.keySet().stream().map(e -> getYearComic(e).stream().
+                filter(y -> interval.contains(y)).map(m -> comicFilmMap.get(e).get(m)).
+                collect(Collectors.toList())).filter(r -> !r.isEmpty()).collect(Collectors.toList()));
         return null;
     }
 
     // Comics im Jahr
     public List<String> comicsImJahr(Year year) {
-        return null;
+        YearInterval intervalYear = new YearInterval(year);
+
+        return comicFilmMap.keySet().stream().filter(e -> comicFilmMap.get(e).containsKey(intervalYear)).collect(Collectors.toList());
     }
 
     // Comics im Intervall
     public List<String> comicsImInterval(YearInterval interval) {
+        System.out.println(comicFilmMap.keySet().stream().map(e -> getYearComic(e).stream().
+                filter(y -> interval.contains(y)).map(m -> comicFilmMap.get(e).get(m))));
+
         return null;
     }
 

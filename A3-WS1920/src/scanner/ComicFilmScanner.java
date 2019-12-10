@@ -97,6 +97,7 @@ public class ComicFilmScanner {
     }
 
 
+
     public YearInterval checkYear(String year) {
         Year yearBegin = null;
         YearInterval yearIntervalObj = null;
