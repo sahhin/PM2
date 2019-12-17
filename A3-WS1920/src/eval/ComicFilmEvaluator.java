@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Year;
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -114,10 +115,13 @@ public class ComicFilmEvaluator {
 
     // Comic mit den meisten Verfilmungen
     public String comicMitDenMeistenVerfilmungen() {
-        return
-                comicFilmMap.entrySet()
+        Optional<Map.Entry<String,Map<YearInterval,List<String>>>> opt =  comicFilmMap.entrySet()
                         .stream()
-                        .max(Comparator.comparing(comicMap -> filmsperComic(comicMap.getValue()))).orElse(null).getKey();
+                        .max(Comparator.comparing(comicMap -> filmsperComic(comicMap.getValue())));
+        if (opt.isPresent()) {
+            return opt.get().getKey();
+        }
+        return null;
     }
 
     // Comics mit den meisten Verfilmungen
@@ -125,12 +129,11 @@ public class ComicFilmEvaluator {
         int max = maxVerfilmungen();
 
         return comicFilmMap.entrySet()
-                           .stream()
-                           .filter(mapOfComic -> filmsperComic(mapOfComic.getValue()) == max )
-                           .map(mapComicFilm -> mapComicFilm.getKey())
-                           .collect(Collectors.toList());
+                .stream()
+                .filter(mapOfComic -> filmsperComic(mapOfComic.getValue()) == max)
+                .map(mapComicFilm -> mapComicFilm.getKey())
+                .collect(Collectors.toList());
     }
-
 
 
     // Bilde auf Anzahl aller Verfilmungen ab
@@ -141,10 +144,10 @@ public class ComicFilmEvaluator {
     // Maximale Anzahl an Verfilmungen
     public int maxVerfilmungen() {
         return comicFilmMap.values()
-                           .stream()
-                           .mapToInt(yearMap -> filmsperComic(yearMap))
-                           .max()
-                           .getAsInt();
+                .stream()
+                .mapToInt(yearMap -> filmsperComic(yearMap))
+                .max()
+                .orElse(0);
     }
 
     //10 BErechnen Sie die maximale Anzahl an Verfilmungen eines Comics
@@ -226,10 +229,11 @@ public class ComicFilmEvaluator {
                 .stream()
                 .forEach(mapOfComic -> mapOfComic.getValue()
                         .forEach((yearEntry, filmList) -> {
-                            if (!mapYearComic.containsKey(yearEntry)) {
-                                mapYearComic.put(yearEntry, new ArrayList<>());
-                            }
-                            mapYearComic.get(yearEntry).add(mapOfComic.getKey());
+//                            if (!mapYearComic.containsKey(yearEntry)) {
+//                                mapYearComic.put(yearEntry, new ArrayList<>());
+//                            }
+//                            mapYearComic.get(yearEntry).add(mapOfComic.getKey());
+                              mapYearComic.computeIfAbsent(yearEntry, list -> new ArrayList<>()).add(mapOfComic.getKey());
                         }));
 
         return mapYearComic;
