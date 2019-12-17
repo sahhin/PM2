@@ -27,13 +27,11 @@ public class ComicFilmEvaluator {
 
     // Alle Comics
     public ArrayList<String> allComics() {
-        System.out.println("Berechnen Sie eine Liste der Comics");
         return new ArrayList<>(comicFilmMap.keySet());
     }
 
     // Alle Filme
     public Set<String> alleFilme() {
-        System.out.println("Berechnen Sie eine Liste aller Filme.");
         return comicFilmMap
                 .values()
                 .stream()
@@ -46,7 +44,6 @@ public class ComicFilmEvaluator {
 
     // Alle Filme in Jahr
     public List<String> filmeImJahr(Year year) {
-        System.out.println("Berechnen Sie eine Liste aller Filme/Comics, die in einem gegebenen Jahr liegen.");
         YearInterval intervalYear = new YearInterval(year);
         return comicFilmMap
                 .values()
@@ -59,7 +56,6 @@ public class ComicFilmEvaluator {
 
     // Alle Filme im Intervall
     public List<String> filmeImIntervall(YearInterval interval) {
-        System.out.println("Prüfen Sie ob es einen Film in einem gegebenen Intervall gibt. ");
         return comicFilmMap
                 .values()
                 .stream()
@@ -73,61 +69,61 @@ public class ComicFilmEvaluator {
 
     // Comics im Jahr
     public List<String> comicsImJahr(Year year) {
-        System.out.println(" !!!!!!!!!!!!!!!!!!! Comics im Jahr -Berechnen Sie eine Liste aller Filme/Comics, die in einem gegebenen Zeitintervall liegen.");
-        return comicFilmMap
-                .entrySet()
+        return comicFilmMap.entrySet()
                 .stream()
-                .filter(comic -> comic.getValue().keySet().contains(year))
-                .map(entry -> entry.getKey())
+                .filter(comicMapFilm -> comicMapFilm.getValue()
+                        .entrySet()
+                        .stream()
+                        .anyMatch(yearIntervalListEntry -> yearIntervalListEntry.getKey().contains(year)))
+                .map(map -> map.getKey())
                 .collect(Collectors.toList());
-    }
 
-    private ArrayList<String> getComic(String comic) {
-        ArrayList<String> comicList = new ArrayList<>();
-        comicList.add(comic);
-        return comicList;
-    }
-
-    private int filmAnzahl(Map.Entry<String, Map<YearInterval, List<String>>> comicEntry) {
-        // return comicEntry.getValue().values().stream().map(List::size).reduce(0, Integer::sum);
-        return comicEntry.getValue().values().stream().mapToInt(List::size).sum();
     }
 
     // Comics im Intervall
     public List<String> comicsImInterval(YearInterval interval) {
-//        System.out.println("Berechnen Sie eine Liste aller Filme/Comics, die in einem gegebenen Jahr liegen.");
-//        ArrayList<String> comicImIntervalList = new ArrayList<>();
-//        System.out.println(comicFilmMap.keySet().stream().map(e -> getYearComic(e).stream().
-//                filter(interval::contains).map(m -> getComic(e)).
-//                collect(Collectors.toList())).filter(r -> !r.isEmpty()).collect(Collectors.toList()));
-        return null;
+        return comicFilmMap.entrySet()
+                .stream()
+                .filter(comicMap -> comicMap.getValue()
+                        .entrySet()
+                        .stream()
+                        .anyMatch(yearIntervalListEntry -> interval.contains(yearIntervalListEntry.getKey())))
+                .map(map -> map.getKey())
+                .collect(Collectors.toList());
+
     }
 
     // Alle Comics mit Präfix pre
     public List<String> alleComicsMitPraefix(String pre) {
-        System.out.println("Berechnen Sie eine Liste aller Comics, die miteinem gegebenen Präfix beginnen");
-        //ArrayList<String> allComicsList = new ArrayList<>();
-        return comicFilmMap.keySet().stream().filter(comic -> comic.startsWith(pre)).collect(Collectors.toList());
-        //return allComicsList;
+        return comicFilmMap.keySet()
+                .stream()
+                .filter(comic -> comic.startsWith(pre))
+                .collect(Collectors.toList());
+    }
+
+    //gibt den Anzahl an Films von einem Comic
+    public int filmsperComic(Map<YearInterval, List<String>> m) {
+        return m.entrySet()
+                .stream()
+                .mapToInt(film -> film.getValue().size()).sum();
     }
 
     // Comic mit den meisten Verfilmungen
-    private String comicMitDenMeistenVerfilmungen() {
-        //return comicFilmMap.entrySet().stream().max(Comparator.comparingInt(this::filmAnzahl)).orElse("");
+    public String comicMitDenMeistenVerfilmungen() {
+        Optional<Map.Entry<String, Map<YearInterval, List<String>>>> comicMax =
+                comicFilmMap.entrySet()
+                        .stream()
+                        .max(Comparator.comparing(comicMap -> filmsperComic(comicMap.getValue())));
+
         return null;
     }
 
     // Comics mit den meisten Verfilmungen
     public List<String> comicsMitDenMeistenVerfilmungen() {
-        System.out.println("Berechnen Sie einen Comic mit den meisten Verfilmungen.");
         int max = maxVerfilmungen();
-
-        return null; //comicFilmMap.keySet().stream().filter(e -> filmAnzahl(e) == max).collect(Collectors.toList());
+        return null;
     }
 
-    public void getYear() {
-        comicFilmMap.keySet().forEach((k) -> comicFilmMap.get(k));
-    }
 
     //Gibt den Map-Value zuruck
     public Map<YearInterval, List<String>> getMapValue() {
@@ -147,77 +143,83 @@ public class ComicFilmEvaluator {
 
     // Gibt es eine Verfilmung im Interval
     public boolean anyInInterval(YearInterval interval, Map<YearInterval, List<String>> value) {
-        System.out.println("Prüfen Sie ob es einen Film in einemgegebenen Intervall gibt");
         return value.keySet().stream().anyMatch(y -> interval.contains(y));
     }
 
     // Bilde auf Anzahl aller Verfilmungen ab
     public int mapToFilmsTotal(Map<YearInterval, List<String>> m) {
-        System.out.println("Bilden Sie ein Intervall-Filme Map auf die Gesamtzahl der Verfilmungen ab.");
-        return m.entrySet().stream().map((jahr) -> jahr.getValue().size()).reduce(0, (film1, film2) -> film1 + film2);
+        //return m.entrySet().stream().map((jahr) -> jahr.getValue().size()).reduce(0, (film1, film2) -> film1 + film2);
+        return m.values().stream().mapToInt(filmList -> filmList.size()).sum();
     }
 
     // Maximale Anzahl an Verfilmungen
     public int maxVerfilmungen() {
-        return 0;
+        return comicFilmMap.values()
+                .stream()
+                .mapToInt(yearMap -> mapToFilmsTotal(yearMap))
+                .max()
+                .getAsInt();
     }
 
     // Gibt es einen Film/Comic vor dem Jahr
     public boolean anyFilmBefore(Year year) {
-        System.out.println("Prüfen Sie, ob es einen Comic/Film vor/nach einem gegebenen Jahr gibt.");
-        return false;//comicFilmMap.keySet().stream().map(e -> getYearComic(e).stream().
-        // filter(y -> y.before(year)).collect(Collectors.toList())).anyMatch(r -> !r.isEmpty());
+        return comicFilmMap.values()
+                .stream()
+                .anyMatch(yearIntervalListMap -> yearIntervalListMap.entrySet()
+                        .stream()
+                        .anyMatch(film -> film.getKey().before(year)));
     }
 
     // Gibt es einen Film/Comic nach dem Jahr j
     public List<String> filmsPast(Year year) {
-//        System.out.println("Prüfen Sie, ob es einen Comic/Film vor/nach einem gegebenen Jahr gibt." +
-//                "!!!!!!!!!!!!!!!!!!!!!!!!!!!!                           !!!!!!!!!!!! ");
-//        System.out.println(comicFilmMap.values().stream().filter(c -> c.keySet().stream().
-//                anyMatch(y -> y.after(year))).collect(Collectors.toList()));
-//
-//        System.out.println(comicFilmMap.keySet().stream().map(e -> getYearComic(e).stream().
-//                filter(y -> y.after(year)).map(m -> comicFilmMap.get(e).get(m)).
-//                collect(Collectors.toList())).filter(r -> !r.isEmpty()).collect(Collectors.toList()));
-        return null;
+        return comicFilmMap
+                .values()
+                .stream()
+                .map(yearFilmeEntry -> yearFilmeEntry.entrySet())
+                .flatMap(Set::stream)
+                .filter(entry -> entry.getKey().before(year))
+                .map(entry -> entry.getValue())
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
     }
 
     // Comics nach dem Jahr j
     public List<String> comicsPast(Year year) {
-//        System.out.println("Prüfen Sie, ob es einen Comic/Film vor/nach einem gegebenen Jahr gibt."
-//                + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-//        System.out.println(comicFilmMap.keySet().stream().map(e -> getYearComic(e).stream().
-//                filter(y -> y.after(year)).map(m -> getComic(e)).
-//                collect(Collectors.toList())).filter(r -> !r.isEmpty()).collect(Collectors.toList()));
-        return null;
+        return comicFilmMap.entrySet()
+                .stream()
+                .filter(mapComicFIlm -> mapComicFIlm.getValue()
+                        .entrySet()
+                        .stream()
+                        .anyMatch(yearIntervalListEntry -> yearIntervalListEntry.getKey().after(year)))
+                .map(map -> map.getKey())
+                .collect(Collectors.toList());
     }
 
     // Comics vor dem Jahr j
     public List<String> comicsBefore(Year year) {
-//        System.out.println("Prüfen Sie, ob es einen Comic/Film vor/nach einem gegebenen Jahr gibt.");
-//        System.out.println(comicFilmMap.keySet().stream().map(e -> getYearComic(e).stream().
-//                filter(y -> y.before(year)).map(m -> getComic(e)).
-//                collect(Collectors.toList())).filter(r -> !r.isEmpty()).collect(Collectors.toList()));
-        return null;
-    }
-
-    public Stream<YearInterval> getYearStream(String comic) {
-        return comicFilmMap.get(comic).keySet().stream();
+        return comicFilmMap.entrySet()
+                .stream()
+                .filter(mapComicFIlm -> mapComicFIlm.getValue()
+                        .entrySet()
+                        .stream()
+                        .anyMatch(yearIntervalListEntry -> yearIntervalListEntry.getKey().before(year)))
+                .map(map -> map.getKey())
+                .collect(Collectors.toList());
     }
 
     // Gruppiere Comics nach Interval
     public Map<YearInterval, List<String>> gruppiereComicsNachInterval() {
-        System.out.println("Gruppieren Sie die Comics nach Jahresintervall.");
-
         Map<YearInterval, List<String>> mapYearComic = new HashMap<>();
-        comicFilmMap.entrySet().forEach(comic -> comic.getValue().entrySet().forEach(y -> {
-            if (!mapYearComic.containsKey(y.getKey())) {
-                mapYearComic.put(y.getKey(), new ArrayList<>());
-            } else {
-                y.getValue().forEach(f -> mapYearComic.get(y.getKey()).add(f));
-            }
-        }));
+
+
         return mapYearComic;
     }
-
 }
+
+//        comicFilmMap.entrySet().forEach(comic -> comic.getValue().entrySet().forEach(y -> {
+//            if (!mapYearComic.containsKey(y.getKey())) {
+//                mapYearComic.put(y.getKey(), new ArrayList<>());
+//            } else {
+//                y.getValue().forEach(f -> mapYearComic.get(y.getKey()).add(f));
+//            }
+//        }));
