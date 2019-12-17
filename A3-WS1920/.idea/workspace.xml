@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39d10931-15b6-4075-ba30-35f33be711f2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/A2-WS1920/eval/ComicFilmEvaluator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A2-WS1920/eval/ComicFilmEvaluator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/A2-WS1920/scanner/ComicFilmScanner.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A2-WS1920/scanner/ComicFilmScanner.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/A2-WS1920/scanner/WikipediaComicFilmScannerMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A2-WS1920/scanner/WikipediaComicFilmScannerMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/A2-WS1920/temporals/TemporalInterval$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A2-WS1920/temporals/TemporalInterval$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/A2-WS1920/temporals/TemporalInterval.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A2-WS1920/temporals/TemporalInterval.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/A2-WS1920/utils/WikiFilmParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A2-WS1920/utils/WikiFilmParser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/A2-WS1920/utils/WikiFilmParserMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A2-WS1920/utils/WikiFilmParserMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/A2-WS1920/utils/YearInterval$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A2-WS1920/utils/YearInterval$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/A2-WS1920/utils/YearInterval.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/A2-WS1920/utils/YearInterval.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/eval/ComicFilmEvaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/eval/ComicFilmEvaluator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scanner/WikipediaComicFilmScannerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scanner/WikipediaComicFilmScannerMain.java" afterDir="false" />
     </list>

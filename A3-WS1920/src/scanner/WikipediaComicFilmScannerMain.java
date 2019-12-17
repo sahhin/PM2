@@ -30,64 +30,94 @@ public class WikipediaComicFilmScannerMain {
 
 
 //        1
-        System.out.println("1 : Berechnen Sie eine Liste der Comics");
+        System.out.println("Berechnen Sie eine Liste der Comics");
         System.out.println(eval.allComics());
-        System.out.println("#############################################");
 //        2
         System.out.println("2 : Berechnen Sie eine Liste aller Filme.");
         System.out.println(eval.alleFilme());
         System.out.println("#############################################");
 //        3
-        System.out.println("3 : Berechnen Sie eine Liste aller Filme die in einem gegebenen Jahr liegen.");
-        System.out.println(eval.filmeImJahr(Year.of(1992)));
-        System.out.println("#############################################");
-//        4
-        System.out.println("4 : Prüfen Sie ob es einen Film in einem gegebenen Intervall gibt. ");
-        System.out.println(eval.filmeImIntervall(new YearInterval(Year.of(1992),Year.of(1998))));
-        System.out.println("#############################################");
-//        5
-        System.out.println("5 : Comics im Jahr -Berechnen Sie eine Liste aller Filme/Comics, die in einem gegebenen Zeitintervall liegen.");
+        System.out.println("-------------------------------------------------------------------------------------------------------");
+        System.out.println("3");
+        System.out.println("Berechnen Sie eine Liste aller Filme die in einem gegebenen Jahr liegen.");
+        System.out.println(eval.filmeImJahr(Year.of(1989)));
+
+
+        System.out.println("Comics im Jahr -Berechnen Sie eine Liste aller Filme/Comics, die in einem gegebenen Zeitintervall liegen.");
         System.out.println(eval.comicsImJahr(Year.of(2013)));
-        System.out.println("#############################################");
-//        6
-        System.out.println("6 : Berechnen Sie eine Liste aller Filme/Comics, die in einem gegebenen Jahr liegen.");
-        System.out.println(eval.comicsImInterval(new YearInterval(Year.of(1990),Year.of(1998))));
-        System.out.println("#############################################");
-//        7
-        System.out.println("7 : Berechnen Sie eine Liste aller Comics, die miteinem gegebenen Präfix beginnen");
+        System.out.println("----------------------------------------------------------------------------------------------------------------");
+//        4
+        System.out.println("4");
+        System.out.println("Berechnen Sie eine Liste aller Filme die in einem INTERVAL liegen");
+        System.out.println(eval.filmeImIntervall(new YearInterval(Year.of(1900),Year.of(1914))));
+        System.out.println(" ");
+        System.out.println("Berechnen Sie eine Liste aller Comics, die in einem gegebenen Jahr liegen.");
+        System.out.println(eval.comicsImInterval(new YearInterval(Year.of(2018),Year.of(2019))));
+        System.out.println("-------------------------------------------------------------------------------------------------------");
+
+//        5
+        System.out.println("5");
+        System.out.println("Berechnen Sie eine Liste aller Comics, die miteinem gegebenen Präfix beginnen");
         String pre = "Der";
         System.out.println("Präfix: " + pre);
         System.out.println(eval.alleComicsMitPraefix(pre));
-        System.out.println("#############################################");
-//        maxFilme
-        System.out.println("Bilde auf Anzahl aller Verfilmungen ab");
-        System.out.println(eval.mapToFilmsTotal(eval.getMapValue()));
-        System.out.println("#############################################");
-//        8
+
+        //        6
+        System.out.println("-------------------------------------------------------------------------------------------------------");
+        System.out.println("6");
         System.out.println("gibt den Comic mit den meisten Verfilmungen");
         System.out.println(eval.comicMitDenMeistenVerfilmungen());
+
+        //7
+        System.out.println("-------------------------------------------------------------------------------------------------------");
+        System.out.println("7");
         System.out.println("gibt die Comics mit den meisten Verfilmungen");
         System.out.println(eval.comicsMitDenMeistenVerfilmungen());
-        System.out.println("#############################################");
-//        9
-        System.out.println("Prüfen Sie ob es einen Film in einemgegebenen Intervall gibt");
-        System.out.println(eval.anyInInterval(new YearInterval(Year.of(1992),Year.of(1998)), eval.getMapValue()));
-        System.out.println("#############################################");
-//        11
-        System.out.println("Gibt es einen Film/Comic vor dem Jahr");
-        System.out.println(eval.anyFilmBefore(Year.of(1875)));
-        System.out.println("#############################################");
-        System.out.println(eval.filmsPast(Year.of(1992)));
-        System.out.println("#############################################");
-        System.out.println(eval.comicsPast(Year.of(1992)));
-        System.out.println("#############################################");
-        System.out.println(eval.comicsBefore(Year.of(1992)));
-        System.out.println("#############################################");
-//        12
-        System.out.println(eval.gruppiereComicsNachInterval());
-        System.out.println("#############################################");
 
-        System.out.println(eval.);
+       //8
+        System.out.println("-------------------------------------------------------------------------------------------------------");
+        System.out.println("8");
+        System.out.println("Prüfen Sie ob es einen Film in einemgegebenen Intervall gibt");
+        System.out.println(eval.anyInInterval(new YearInterval(Year.of(1992),Year.of(1998)), eval.gruppiereComicsNachInterval()));
+
+       //9
+        System.out.println("-------------------------------------------------------------------------------------------------------");
+        System.out.println("9");
+        System.out.println("Bilde auf Anzahl aller Verfilmungen ab");
+        System.out.println(eval.mapToFilmsTotal(eval.gruppiereComicsNachInterval()));
+
+        //10
+        System.out.println("-----------------------------------------------------------------------------------------------------------");
+        System.out.println("10");
+        System.out.println("Berechne die maxinamle Anzahl an Verfilmungen eines Comics: Marsupilami");
+        System.out.println(eval.anzahlFilmforComic("Marsupilami"));
+
+
+//        11
+        System.out.println("-------------------------------------------------------------------------------------------------------");
+        System.out.println("11");
+        System.out.println("Gibt es einen Film vor dem Jahr");
+        System.out.println(eval.anyFilmBefore(Year.of(1875)));
+
+        System.out.println("Gibt Filme vor dem Jahr");
+        System.out.println(eval.filmsBefore(Year.of(1900)));
+
+        System.out.println("Gibt Filme nach dem Jahr");
+        System.out.println(eval.filmsPast(Year.of(2018)));
+
+        System.out.println("Gibt es Comic nach dem jahr");
+        System.out.println(eval.comicsPast(Year.of(2018)));
+
+        System.out.println("Gibt Comics vor dem Jahr");
+        System.out.println(eval.comicsBefore(Year.of(2018)));
+
+//        12
+        System.out.println("-------------------------------------------------------------------------------------------------------");
+        System.out.println("12");
+        System.out.println("Gruppiere Comics nach dem Year");
+        System.out.println(eval.gruppiereComicsNachInterval());
+
+
 
         /*
          * Um direkt von der Webseite zu lesen (BITTE VORSICHT BEI NICHT

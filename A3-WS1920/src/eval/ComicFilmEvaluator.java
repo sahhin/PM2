@@ -44,14 +44,18 @@ public class ComicFilmEvaluator {
 
     // Alle Filme in Jahr
     public List<String> filmeImJahr(Year year) {
-        YearInterval intervalYear = new YearInterval(year);
-        return comicFilmMap
-                .values()
+
+        return comicFilmMap.values()
                 .stream()
-                .filter(e -> e.containsKey(intervalYear))
-                .map(e -> e.values()).flatMap(Collection::stream)
-                .flatMap(Collection::stream)
+                .map(yearMap -> yearMap.entrySet()
+                        .stream()
+                        .filter(yearEntry -> yearEntry.getKey().contains(year)))
+                .map(entryStream -> entryStream.map(mapYearFilm -> mapYearFilm.getValue())
+                        .collect(Collectors.toList()))
+                .flatMap(List::stream)
+                .flatMap(List::stream)
                 .collect(Collectors.toList());
+
     }
 
     // Alle Filme im Intervall
@@ -62,7 +66,7 @@ public class ComicFilmEvaluator {
                 .map(yearFilmeEntry -> yearFilmeEntry.entrySet())
                 .flatMap(Set::stream)
                 .filter(entry -> interval.contains(entry.getKey()))
-                .map(entry -> entry.getValue())
+                .map(filmList -> filmList.getValue())
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
     }
@@ -114,6 +118,7 @@ public class ComicFilmEvaluator {
                 comicFilmMap.entrySet()
                         .stream()
                         .max(Comparator.comparing(comicMap -> filmsperComic(comicMap.getValue())));
+        System.out.println(comicMax.get().getKey());
 
         return null;
     }
@@ -121,24 +126,33 @@ public class ComicFilmEvaluator {
     // Comics mit den meisten Verfilmungen
     public List<String> comicsMitDenMeistenVerfilmungen() {
         int max = maxVerfilmungen();
-        return null;
+
+        return comicFilmMap.entrySet()
+                           .stream()
+                           .filter(mapOfComic -> filmsperComic(mapOfComic.getValue()) == max )
+                           .map(mapComicFilm -> mapComicFilm.getKey())
+                           .collect(Collectors.toList());
     }
 
 
-    //Gibt den Map-Value zuruck
-    public Map<YearInterval, List<String>> getMapValue() {
-        HashMap<YearInterval, List<String>> map = new HashMap<>();
-        for (Map<YearInterval, List<String>> pair : comicFilmMap.values()) {
-            for (YearInterval pair2 : pair.keySet()) {
-                for (String pair3 : pair.get(pair2)) {
-                    if (!map.containsKey(pair2)) {
-                        map.put(pair2, new ArrayList<>());
-                    }
-                    map.get(pair2).add(pair3);
-                }
-            }
-        }
-        return map;
+
+    // Bilde auf Anzahl aller Verfilmungen ab
+    public int mapToFilmsTotal(Map<YearInterval, List<String>> m) {
+        return m.values().stream().mapToInt(filmList -> filmList.size()).sum();
+    }
+
+    // Maximale Anzahl an Verfilmungen
+    public int maxVerfilmungen() {
+        return comicFilmMap.values()
+                           .stream()
+                           .mapToInt(yearMap -> filmsperComic(yearMap))
+                           .max()
+                           .getAsInt();
+    }
+
+    //10 BErechnen Sie die maximale Anzahl an Verfilmungen eines Comics
+    public int anzahlFilmforComic(String comicName) {
+        return filmsperComic(comicFilmMap.get(comicName));
     }
 
     // Gibt es eine Verfilmung im Interval
@@ -148,22 +162,7 @@ public class ComicFilmEvaluator {
                 .anyMatch(yearIntervalEntry -> interval.contains(yearIntervalEntry));
     }
 
-    // Bilde auf Anzahl aller Verfilmungen ab
-    public int mapToFilmsTotal(Map<YearInterval, List<String>> m) {
-        //return m.entrySet().stream().map((jahr) -> jahr.getValue().size()).reduce(0, (film1, film2) -> film1 + film2);
-        return m.values().stream().mapToInt(filmList -> filmList.size()).sum();
-    }
-
-    // Maximale Anzahl an Verfilmungen
-    public int maxVerfilmungen() {
-        return comicFilmMap.values()
-                .stream()
-                .mapToInt(yearMap -> mapToFilmsTotal(yearMap))
-                .max()
-                .getAsInt();
-    }
-
-    // Gibt es einen Film/Comic vor dem Jahr
+    // Gibt es einen Film vor dem Jahr
     public boolean anyFilmBefore(Year year) {
         return comicFilmMap.values()
                 .stream()
@@ -174,6 +173,19 @@ public class ComicFilmEvaluator {
 
     // Gibt es einen Film/Comic nach dem Jahr j
     public List<String> filmsPast(Year year) {
+        return comicFilmMap
+                .values()
+                .stream()
+                .map(yearFilmeEntry -> yearFilmeEntry.entrySet())
+                .flatMap(Set::stream)
+                .filter(entry -> entry.getKey().after(year))
+                .map(entry -> entry.getValue())
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
+    }
+
+    //Filme nach dem Jahr
+    public List<String> filmsBefore(Year year) {
         return comicFilmMap
                 .values()
                 .stream()
@@ -213,15 +225,24 @@ public class ComicFilmEvaluator {
     public Map<YearInterval, List<String>> gruppiereComicsNachInterval() {
         Map<YearInterval, List<String>> mapYearComic = new HashMap<>();
 
-        comicFilmMap.entrySet().forEach(comic -> comic.getValue().entrySet().forEach(y -> {
-            if (!mapYearComic.containsKey(y.getKey())) {
-                mapYearComic.put(y.getKey(), new ArrayList<>());
-            } else {
-                y.getValue().forEach(f -> mapYearComic.get(y.getKey()).add(f));
-            }
-        }));
+        comicFilmMap.entrySet()
+                .stream()
+                .forEach(mapOfComic -> mapOfComic.getValue()
+                        .forEach((yearEntry, filmList) -> {
+                            if (!mapYearComic.containsKey(yearEntry)) {
+                                mapYearComic.put(yearEntry, new ArrayList<>());
+                            }
+                            mapYearComic.get(yearEntry).add(mapOfComic.getKey());
+                        }));
 
         return mapYearComic;
     }
 }
 
+// comicFilmMap.entrySet().forEach(comic -> comic.getValue().entrySet().forEach(y -> {
+//            if (!mapYearComic.containsKey(y.getKey())) {
+//                mapYearComic.put(y.getKey(), new ArrayList<>());
+//            } else {
+//                y.getValue().forEach(f -> mapYearComic.get(y.getKey()).add(f));
+//            }
+//        }));
