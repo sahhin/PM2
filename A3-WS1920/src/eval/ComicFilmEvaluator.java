@@ -143,7 +143,9 @@ public class ComicFilmEvaluator {
 
     // Gibt es eine Verfilmung im Interval
     public boolean anyInInterval(YearInterval interval, Map<YearInterval, List<String>> value) {
-        return value.keySet().stream().anyMatch(y -> interval.contains(y));
+        return value.keySet()
+                .stream()
+                .anyMatch(yearIntervalEntry -> interval.contains(yearIntervalEntry));
     }
 
     // Bilde auf Anzahl aller Verfilmungen ab
@@ -211,15 +213,15 @@ public class ComicFilmEvaluator {
     public Map<YearInterval, List<String>> gruppiereComicsNachInterval() {
         Map<YearInterval, List<String>> mapYearComic = new HashMap<>();
 
+        comicFilmMap.entrySet().forEach(comic -> comic.getValue().entrySet().forEach(y -> {
+            if (!mapYearComic.containsKey(y.getKey())) {
+                mapYearComic.put(y.getKey(), new ArrayList<>());
+            } else {
+                y.getValue().forEach(f -> mapYearComic.get(y.getKey()).add(f));
+            }
+        }));
 
         return mapYearComic;
     }
 }
 
-//        comicFilmMap.entrySet().forEach(comic -> comic.getValue().entrySet().forEach(y -> {
-//            if (!mapYearComic.containsKey(y.getKey())) {
-//                mapYearComic.put(y.getKey(), new ArrayList<>());
-//            } else {
-//                y.getValue().forEach(f -> mapYearComic.get(y.getKey()).add(f));
-//            }
-//        }));

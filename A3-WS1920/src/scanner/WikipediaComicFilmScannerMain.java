@@ -87,6 +87,8 @@ public class WikipediaComicFilmScannerMain {
         System.out.println(eval.gruppiereComicsNachInterval());
         System.out.println("#############################################");
 
+        System.out.println(eval.);
+
         /*
          * Um direkt von der Webseite zu lesen (BITTE VORSICHT BEI NICHT
          * GETESTETEN PROGRAMMEN) wird der Parser mit der URL der Seiten
