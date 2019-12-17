@@ -114,13 +114,10 @@ public class ComicFilmEvaluator {
 
     // Comic mit den meisten Verfilmungen
     public String comicMitDenMeistenVerfilmungen() {
-        Optional<Map.Entry<String, Map<YearInterval, List<String>>>> comicMax =
+        return
                 comicFilmMap.entrySet()
                         .stream()
-                        .max(Comparator.comparing(comicMap -> filmsperComic(comicMap.getValue())));
-        System.out.println(comicMax.get().getKey());
-
-        return null;
+                        .max(Comparator.comparing(comicMap -> filmsperComic(comicMap.getValue()))).orElse(null).getKey();
     }
 
     // Comics mit den meisten Verfilmungen
