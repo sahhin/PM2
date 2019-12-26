@@ -240,10 +240,4 @@ public class ComicFilmEvaluator {
     }
 }
 
-// comicFilmMap.entrySet().forEach(comic -> comic.getValue().entrySet().forEach(y -> {
-//            if (!mapYearComic.containsKey(y.getKey())) {
-//                mapYearComic.put(y.getKey(), new ArrayList<>());
-//            } else {
-//                y.getValue().forEach(f -> mapYearComic.get(y.getKey()).add(f));
-//            }
-//        }));
+
