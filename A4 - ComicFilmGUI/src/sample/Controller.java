@@ -9,6 +9,7 @@ import sample.viewmodel.ComicViewModel;
 import uimodelhelper.TreeModelHelper;
 
 import java.io.IOException;
+import java.time.Year;
 
 public class Controller {
 
@@ -27,6 +28,9 @@ public class Controller {
 
     @FXML
     private RadioButton vorRadioButton;
+
+    @FXML
+    private TextField vorText;
 
 
     //im initialize werden nur die Daten der Applikation
@@ -62,12 +66,32 @@ public class Controller {
             //Erzeugen der TreeView auf Basis alle Comics
             TreeItem<Comparable> treeItemRoot = TreeModelHelper.createComicTree(new TreeItem<>("Comics"), comicViewModel.comicMap());
 
+//            vorRadioButton.selectedProperty().addListener(new ChangeListener<Boolean>() {
+//                @Override
+//                public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
+//                    if (isNowSelected) {
+//                        vorText.textProperty().addListener((observable, oldValue, newValue) -> {
+//                            if (!((newValue.equals("") || newValue.isEmpty()))) {
+//                                comicTree.setRoot(TreeModelHelper.createComicTree(new TreeItem<>("Suchergebnisse für : " + newValue), comicViewModel.filterYearsBefore(Integer.parseInt(newValue))));
+//                                comicTree.getRoot().setExpanded(true);
+//                            } else {
+//                                comicTree.setRoot(treeItemRoot);
+//                            }
+//
+//                        });
+//                    }
+//                }
+//            });
             searchByText.textProperty().addListener((observable, oldValue, newValue) -> {
-                comicTree.setRoot(TreeModelHelper.createComicTree(new TreeItem<>(newValue), comicViewModel.filterComics(newValue)));
-                comicTree.getRoot().setExpanded(true);
+                if (!((newValue.equals("") || newValue.isEmpty()))) {
+                    comicTree.setRoot(TreeModelHelper.createComicTree(new TreeItem<>("Suchergebnisse für : " + newValue), comicViewModel.filterComics(newValue)));
+                    comicTree.getRoot().setExpanded(true);
+                } else {
+                    comicTree.setRoot(treeItemRoot);
+                }
+
             });
 
-            
 
             //Verknupfung
             comicTree.setRoot(treeItemRoot);

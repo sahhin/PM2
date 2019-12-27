@@ -117,11 +117,11 @@ public class ComicViewModel {
     }
 
     // Das Filtern der Jahresangaben, die vor einem Zeitpunkt liegen
-    public Map<YearInterval, Map<String, List<String>>> filterYearsBefore(Integer val) {
+    public Map<String, Map<YearInterval, List<String>>> filterYearsBefore(Integer val) {
 
         currentComicMap = comicModel.filterYearsBefore(val);
         System.out.println(currentComicMap);
-        return currentYearMap();
+        return currentComicMap();
     }
 
     // Das Filtern der Jahresangaben, die nach einem Zeitpunkt liegen
