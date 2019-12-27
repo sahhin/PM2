@@ -74,7 +74,7 @@ public class ComicModel {
         return comicMap
                 .entrySet()
                 .stream()
-                .filter(e -> e.getKey().contains(sub))
+                .filter(e -> e.getKey().toUpperCase().contains(sub))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 

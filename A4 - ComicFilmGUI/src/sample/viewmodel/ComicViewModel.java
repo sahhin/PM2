@@ -92,7 +92,7 @@ public class ComicViewModel {
         System.out.println("Filtering Comics containing " + sub);
         if (sub == null || sub.isEmpty()) currentComicMap = null;
         else {
-            currentComicMap = comicModel.filterComics(sub);
+            currentComicMap = comicModel.filterComics(sub.toUpperCase());
         }
         System.out.println(currentComicMap);
         return currentComicMap();

@@ -12,8 +12,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("My favorite Comic Browser");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setTitle("WCC - Wiki Comic Crawler");
+        primaryStage.setScene(new Scene(root, 707, 540));
         primaryStage.show();
 
     }

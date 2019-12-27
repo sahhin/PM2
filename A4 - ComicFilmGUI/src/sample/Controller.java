@@ -20,7 +20,10 @@ public class Controller {
     private TreeView<Comparable> comicTree;
 
     @FXML
-    private TextField comicNameField;
+    private TextField searchByText;
+
+    @FXML
+    private ListView filmListView;
 
     @FXML
     private RadioButton vorRadioButton;
@@ -57,12 +60,20 @@ public class Controller {
 
         public void initialize() {
             //Erzeugen der TreeView auf Basis alle Comics
-            TreeItem<Comparable> treeItemRoot = TreeModelHelper.createComicTree(new TreeItem<>("Comics "), comicViewModel.comicMap());
+            TreeItem<Comparable> treeItemRoot = TreeModelHelper.createComicTree(new TreeItem<>("Comics"), comicViewModel.comicMap());
+
+            searchByText.textProperty().addListener((observable, oldValue, newValue) -> {
+                comicTree.setRoot(TreeModelHelper.createComicTree(new TreeItem<>(newValue), comicViewModel.filterComics(newValue)));
+                comicTree.getRoot().setExpanded(true);
+            });
+
+            
 
             //Verknupfung
             comicTree.setRoot(treeItemRoot);
             comicTree.setShowRoot(true);
             comicTree.getRoot().setExpanded(true);
+            comicTree.getRoot().getChildren();
         }
     }
 
