@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.SplitPane?>
@@ -28,22 +29,36 @@
       </SplitPane>
       <ToolBar prefHeight="45.0" prefWidth="707.0">
         <items>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Film" />
-            <TextField fx:id="searchByText" prefHeight="35.0" prefWidth="239.0" />
+            <Text fx:id="searchByFilmText" strokeType="OUTSIDE" strokeWidth="0.0" text="Filmsuche" />
+            <TextField fx:id="searchByText" prefHeight="35.0" prefWidth="209.0">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></TextField>
             <RadioButton fx:id="vorRadioButton" mnemonicParsing="false" text="vor">
                <toggleGroup>
                   <ToggleGroup fx:id="radiouno" />
                </toggleGroup>
-            </RadioButton>
-            <TextField prefHeight="35.0" prefWidth="60.0" />
-            <RadioButton fx:id="vorRadioButton1" mnemonicParsing="false" text="nach" toggleGroup="$radiouno" />
-            <TextField prefHeight="35.0" prefWidth="60.0" />
-            <RadioButton fx:id="vorRadioButton11" mnemonicParsing="false" text="von - bis" toggleGroup="$radiouno" />
-            <TextField prefHeight="35.0" prefWidth="60.0" />
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></RadioButton>
+            <TextField fx:id="vorText" prefHeight="35.0" prefWidth="60.0" />
+            <RadioButton fx:id="nachRadioButton" mnemonicParsing="false" text="nach" toggleGroup="$radiouno">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></RadioButton>
+            <TextField fx:id="nachText" prefHeight="35.0" prefWidth="60.0" />
+            <RadioButton fx:id="vonbisRadioButton" mnemonicParsing="false" text="von - bis" toggleGroup="$radiouno">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></RadioButton>
+            <TextField fx:id="vonbisText1" prefHeight="35.0" prefWidth="60.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
-            <TextField prefHeight="35.0" prefWidth="60.0" />
+            <TextField fx:id="vonbisText2" prefHeight="35.0" prefWidth="60.0" />
         </items>
       </ToolBar>
-      <Text layoutX="527.0" layoutY="534.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bonesso Immerso, Tekes | 2019" />
+      <Text layoutX="527.0" layoutY="534.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bonesso Immerso, Tekes | 2019">
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor></Text>
    </children>
 </Pane>

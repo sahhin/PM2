@@ -4,12 +4,14 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import model.ComicModel;
 import sample.viewmodel.ComicViewModel;
 import uimodelhelper.TreeModelHelper;
 
 import java.io.IOException;
 import java.time.Year;
+import java.util.regex.Pattern;
 
 public class Controller {
 
@@ -19,6 +21,9 @@ public class Controller {
     // eine Instanz-Variable, die mit @FXML annotiert ist
     @FXML
     private TreeView<Comparable> comicTree;
+
+    @FXML
+    private Text searchByFilmText;
 
     @FXML
     private TextField searchByText;
@@ -31,6 +36,21 @@ public class Controller {
 
     @FXML
     private TextField vorText;
+
+    @FXML
+    private RadioButton nachRadioButton;
+
+    @FXML
+    private TextField nachText;
+
+    @FXML
+    private RadioButton vonbisRadioButton;
+
+    @FXML
+    private TextField vonbisText1;
+
+    @FXML
+    private TextField vonbisText2;
 
 
     //im initialize werden nur die Daten der Applikation
@@ -62,26 +82,77 @@ public class Controller {
             });
         }
 
+        private Pattern pattern = Pattern.compile("\\d\\d\\d\\d");
+        private String year1 = "";
+        private String year2 = "";
+
         public void initialize() {
             //Erzeugen der TreeView auf Basis alle Comics
             TreeItem<Comparable> treeItemRoot = TreeModelHelper.createComicTree(new TreeItem<>("Comics"), comicViewModel.comicMap());
 
-//            vorRadioButton.selectedProperty().addListener(new ChangeListener<Boolean>() {
-//                @Override
-//                public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
-//                    if (isNowSelected) {
-//                        vorText.textProperty().addListener((observable, oldValue, newValue) -> {
-//                            if (!((newValue.equals("") || newValue.isEmpty()))) {
-//                                comicTree.setRoot(TreeModelHelper.createComicTree(new TreeItem<>("Suchergebnisse für : " + newValue), comicViewModel.filterYearsBefore(Integer.parseInt(newValue))));
-//                                comicTree.getRoot().setExpanded(true);
-//                            } else {
-//                                comicTree.setRoot(treeItemRoot);
-//                            }
-//
-//                        });
-//                    }
-//                }
-//            });
+            vonbisRadioButton.selectedProperty().addListener(new ChangeListener<Boolean>() {
+                @Override
+                public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
+
+                    if (isNowSelected) {
+                        vonbisText1.textProperty().addListener((observable, oldValue, newValue) -> {
+                            if (!((newValue.equals("") || newValue.isEmpty()))) {
+                                year1 = newValue;
+                            }
+                        });
+
+                        vonbisText2.textProperty().addListener((observable, oldValue, newValue) -> {
+                            if (!((newValue.equals("") || newValue.isEmpty()))) {
+                                year2 = newValue;
+                            }
+
+                            if(!(year1.isEmpty() && year2.isEmpty()) && pattern.matcher(year1).matches() && pattern.matcher(year2).matches() ) {
+                                comicTree.setRoot(TreeModelHelper.createComicTree(new TreeItem<>("Suchergebnisse vor (Jahr): (" + year1 + " - " + year2 + ")"), comicViewModel.filterYearsBetween(Integer.parseInt(year1),Integer.parseInt(year2))));
+                                comicTree.getRoot().setExpanded(true);
+                            } else {
+                                comicTree.setRoot(treeItemRoot);
+                            }
+                        });
+
+
+                    }
+                }
+            });
+
+            vorRadioButton.selectedProperty().addListener(new ChangeListener<Boolean>() {
+                @Override
+                public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
+                    if (isNowSelected) {
+                        vorText.textProperty().addListener((observable, oldValue, newValue) -> {
+                            if (!((newValue.equals("") || newValue.isEmpty())) && pattern.matcher(newValue).matches()) {
+                                comicTree.setRoot(TreeModelHelper.createComicTree(new TreeItem<>("Suchergebnisse vor (Jahr): " + newValue), comicViewModel.filterYearsBefore(Integer.parseInt(newValue))));
+                                comicTree.getRoot().setExpanded(true);
+                            } else {
+                                comicTree.setRoot(treeItemRoot);
+                            }
+
+                        });
+                    }
+                }
+            });
+
+            nachRadioButton.selectedProperty().addListener(new ChangeListener<Boolean>() {
+                @Override
+                public void changed(ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) {
+                    if (isNowSelected) {
+                        nachText.textProperty().addListener((observable, oldValue, newValue) -> {
+                            if (!((newValue.equals("") || newValue.isEmpty())) && pattern.matcher(newValue).matches()) {
+                                comicTree.setRoot(TreeModelHelper.createComicTree(new TreeItem<>("Suchergebnisse nach (Jahr): " + newValue), comicViewModel.filterYearsAfter(Integer.parseInt(newValue))));
+                                comicTree.getRoot().setExpanded(true);
+                            } else {
+                                comicTree.setRoot(treeItemRoot);
+                            }
+
+                        });
+                    }
+                }
+            });
+
             searchByText.textProperty().addListener((observable, oldValue, newValue) -> {
                 if (!((newValue.equals("") || newValue.isEmpty()))) {
                     comicTree.setRoot(TreeModelHelper.createComicTree(new TreeItem<>("Suchergebnisse für : " + newValue), comicViewModel.filterComics(newValue)));
@@ -89,7 +160,6 @@ public class Controller {
                 } else {
                     comicTree.setRoot(treeItemRoot);
                 }
-
             });
 
 
