@@ -10,6 +10,7 @@
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="707.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
@@ -30,7 +31,7 @@
       <ToolBar prefHeight="45.0" prefWidth="707.0">
         <items>
             <Text fx:id="searchByFilmText" strokeType="OUTSIDE" strokeWidth="0.0" text="Filmsuche" />
-            <TextField fx:id="searchByText" prefHeight="35.0" prefWidth="209.0">
+            <TextField fx:id="searchByText" prefHeight="35.0" prefWidth="209.0" promptText="Filmname eingeben ...">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor></TextField>
@@ -41,24 +42,27 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></RadioButton>
-            <TextField fx:id="vorText" prefHeight="35.0" prefWidth="60.0" />
+            <TextField fx:id="vorText" prefHeight="35.0" prefWidth="60.0" promptText="Jahr" />
             <RadioButton fx:id="nachRadioButton" mnemonicParsing="false" text="nach" toggleGroup="$radiouno">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></RadioButton>
-            <TextField fx:id="nachText" prefHeight="35.0" prefWidth="60.0" />
+            <TextField fx:id="nachText" prefHeight="35.0" prefWidth="60.0" promptText="Jahr" />
             <RadioButton fx:id="vonbisRadioButton" mnemonicParsing="false" text="von - bis" toggleGroup="$radiouno">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></RadioButton>
-            <TextField fx:id="vonbisText1" prefHeight="35.0" prefWidth="60.0" />
+            <TextField fx:id="vonbisText1" prefHeight="35.0" prefWidth="60.0" promptText="Jahr" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
-            <TextField fx:id="vonbisText2" prefHeight="35.0" prefWidth="60.0" />
+            <TextField fx:id="vonbisText2" prefHeight="35.0" prefWidth="60.0" promptText="Jahr" />
         </items>
       </ToolBar>
-      <Text layoutX="527.0" layoutY="534.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bonesso Immerso, Tekes | 2019">
+      <Text fontSmoothingType="LCD" layoutX="548.0" layoutY="533.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bonesso Immerso, Tekes | 2019">
          <cursor>
             <Cursor fx:constant="CLOSED_HAND" />
-         </cursor></Text>
+         </cursor>
+         <font>
+            <Font size="11.0" />
+         </font></Text>
    </children>
 </Pane>
