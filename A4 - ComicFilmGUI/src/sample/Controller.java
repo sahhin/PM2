@@ -1,17 +1,19 @@
 package sample;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
-import model.ComicModel;
 import sample.viewmodel.ComicViewModel;
 import uimodelhelper.TreeModelHelper;
 
 import java.io.IOException;
-import java.time.Year;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Controller {
 
@@ -29,7 +31,13 @@ public class Controller {
     private TextField searchByText;
 
     @FXML
-    private ListView filmListView;
+    private TreeTableView<Comparable> filmListView;
+
+    @FXML
+    private TreeTableColumn<String, String> listYear= new TreeTableColumn<>("Jahr");
+
+    @FXML
+    private TreeTableColumn<String, String> listName;
 
     @FXML
     private RadioButton vorRadioButton;
@@ -76,7 +84,7 @@ public class Controller {
                 @Override
                 public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
                     if (oldValue == null || (newValue != null && !oldValue.equals(newValue))) {
-
+                        System.out.println("hey");
                     }
                 }
             });
@@ -86,9 +94,27 @@ public class Controller {
         private String year1 = "";
         private String year2 = "";
 
+
+
         public void initialize() {
             //Erzeugen der TreeView auf Basis alle Comics
             TreeItem<Comparable> treeItemRoot = TreeModelHelper.createComicTree(new TreeItem<>("Comics"), comicViewModel.comicMap());
+
+
+////            klick auf linkes element
+//            comicTree.getSelectionModel().selectedItemProperty().addListener( new ChangeListener() {
+//
+//                @Override
+//                public void changed(ObservableValue observable, Object oldValue,
+//                                    Object newValue) {
+//
+//                    TreeItem<String> selectedItem = (TreeItem<String>) newValue;
+//                    System.out.println("Selected Text : " + selectedItem.getValue());
+//                    // do what ever you want
+//                    ObservableList<String> )
+//                }
+//
+//            });
 
             vonbisRadioButton.selectedProperty().addListener(new ChangeListener<Boolean>() {
                 @Override
@@ -107,7 +133,7 @@ public class Controller {
                             }
 
                             if(!(year1.isEmpty() && year2.isEmpty()) && pattern.matcher(year1).matches() && pattern.matcher(year2).matches() ) {
-                                comicTree.setRoot(TreeModelHelper.createComicTree(new TreeItem<>("Suchergebnisse vor (Jahr): (" + year1 + " - " + year2 + ")"), comicViewModel.filterYearsBetween(Integer.parseInt(year1),Integer.parseInt(year2))));
+                                comicTree.setRoot(TreeModelHelper.createComicTree(new TreeItem<>("1926 6548484 Suchergebnisse vor (Jahr): (" + year1 + " - " + year2 + ")"), comicViewModel.filterYearsBetween(Integer.parseInt(year1),Integer.parseInt(year2))));
                                 comicTree.getRoot().setExpanded(true);
                             } else {
                                 comicTree.setRoot(treeItemRoot);
@@ -146,6 +172,7 @@ public class Controller {
                                 comicTree.getRoot().setExpanded(true);
                             } else {
                                 comicTree.setRoot(treeItemRoot);
+
                             }
 
                         });

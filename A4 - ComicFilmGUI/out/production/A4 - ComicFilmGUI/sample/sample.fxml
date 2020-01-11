@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -24,7 +25,12 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <ListView fx:id="filmListView" layoutX="-2.0" layoutY="8.0" prefHeight="440.0" prefWidth="345.0" />
+                  <TreeTableView fx:id="filmListView" prefHeight="472.0" prefWidth="350.0">
+                    <columns>
+                      <TreeTableColumn fx:id="listYear" prefWidth="110.0" />
+                      <TreeTableColumn fx:id="listName" prefWidth="239.0" />
+                    </columns>
+                  </TreeTableView>
                </children></AnchorPane>
         </items>
       </SplitPane>
@@ -57,7 +63,7 @@
             <TextField fx:id="vonbisText2" prefHeight="35.0" prefWidth="60.0" promptText="Jahr" />
         </items>
       </ToolBar>
-      <Text disable="true" fontSmoothingType="LCD" layoutX="548.0" layoutY="533.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bonesso Immerso, Tekes | 2019">
+      <Text fontSmoothingType="LCD" layoutX="548.0" layoutY="533.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bonesso Immerso, Tekes | 2019">
          <cursor>
             <Cursor fx:constant="CLOSED_HAND" />
          </cursor>
