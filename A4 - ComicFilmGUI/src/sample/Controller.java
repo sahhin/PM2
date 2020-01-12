@@ -3,6 +3,7 @@ package sample;
 import com.sun.jdi.Value;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -135,18 +136,21 @@ public class Controller {
                         List<String> namesList = new ArrayList<>(comicViewModel.get(comicViewModel.getComic()).values());
                         ObservableList<String> namesObs = FXCollections.observableArrayList(namesList);
 
-                        List<String> yearsList = new ArrayList<>(comicViewModel.get(comicViewModel.getComic()).values());
+
+                        List<String> yearsList = new ArrayList<>(comicViewModel.get(comicViewModel.getYearInterval()).keySet());
                         ObservableList<String> yearsObs = FXCollections.observableArrayList(yearsList);
 
-                        yearsObs.forEach(k ->  listYear.setCellValueFactory(p -> new
-                                ReadOnlyObjectWrapper<>(yearsObs.get(yearsObs.indexOf(k)))));
+
+                        listYear.setCellValueFactory(p -> new
+                                ReadOnlyObjectWrapper<>(p.getValue()));
 
 
-                        namesObs.forEach(k ->  listName.setCellValueFactory(p -> new
-                                ReadOnlyObjectWrapper<>(namesObs.get(namesObs.indexOf(k)))));
 
+                        listName.setCellValueFactory(p -> new
+                                ReadOnlyObjectWrapper<>(p.getValue()));
                         filmListView.setItems(yearsObs);
-                        filmListView.setItems(namesObs);
+//                        filmListView.getItems().addAll(yearsObs,namesObs);
+
                         filmListView.getColumns().setAll(listYear,listName);
                     });
 
