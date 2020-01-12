@@ -1,19 +1,20 @@
 package sample;
 
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.TextFieldTreeCell;
 import javafx.scene.text.Text;
+import model.ComicModel;
 import sample.viewmodel.ComicViewModel;
 import uimodelhelper.TreeModelHelper;
+import utils.YearInterval;
 
 import java.io.IOException;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class Controller {
 
@@ -34,7 +35,7 @@ public class Controller {
     private TreeTableView<Comparable> filmListView;
 
     @FXML
-    private TreeTableColumn<String, String> listYear= new TreeTableColumn<>("Jahr");
+    private TreeTableColumn<String, String> listYear = new TreeTableColumn<>("Jahr");
 
     @FXML
     private TreeTableColumn<String, String> listName;
@@ -60,6 +61,14 @@ public class Controller {
     @FXML
     private TextField vonbisText2;
 
+    private Pattern pattern = Pattern.compile("\\d\\d\\d\\d");
+    private String year1 = "";
+    private String year2 = "";
+
+    private boolean toggleView = true;
+    private final String switchToComicsText = "nach Namen sortieren";
+    private final String switchToYearText = "nach Jahren sortieren";
+
 
     //im initialize werden nur die Daten der Applikation
     //generiert und Objekte der inneren Klassen erzeugt
@@ -77,6 +86,7 @@ public class Controller {
 
     private class ComicTreeView {
         private ComicViewModel comicViewModel;
+        private ComicModel comicModel;
 
         public ComicTreeView(ComicViewModel comicViewModel) {
             this.comicViewModel = comicViewModel;
@@ -90,31 +100,66 @@ public class Controller {
             });
         }
 
-        private Pattern pattern = Pattern.compile("\\d\\d\\d\\d");
-        private String year1 = "";
-        private String year2 = "";
-
-
 
         public void initialize() {
             //Erzeugen der TreeView auf Basis alle Comics
-            TreeItem<Comparable> treeItemRoot = TreeModelHelper.createComicTree(new TreeItem<>("Comics"), comicViewModel.comicMap());
+            TreeItem<Comparable> treeItemRoot = TreeModelHelper.createComicTree(new TreeItem<>("nach Comics"), comicViewModel.comicMap());
+
+            //Verknupfung
+            comicTree.setRoot(treeItemRoot);
+            comicTree.setShowRoot(true);
+            comicTree.getRoot().setExpanded(true);
+            comicTree.getRoot().getChildren();
 
 
-////            klick auf linkes element
-//            comicTree.getSelectionModel().selectedItemProperty().addListener( new ChangeListener() {
-//
-//                @Override
-//                public void changed(ObservableValue observable, Object oldValue,
-//                                    Object newValue) {
-//
-//                    TreeItem<String> selectedItem = (TreeItem<String>) newValue;
-//                    System.out.println("Selected Text : " + selectedItem.getValue());
-//                    // do what ever you want
-//                    ObservableList<String> )
-//                }
-//
-//            });
+//            klick auf linkes element
+            comicTree.getSelectionModel().selectedItemProperty().addListener(
+                    (observable, oldValue, newValue) -> {
+                        if (newValue != null && newValue.getValue() instanceof String) {
+                            comicViewModel.setComic((String) newValue.getValue());
+                        }
+                        if (newValue != null && newValue.getValue() instanceof YearInterval) {
+                            comicViewModel.setYearInterval((YearInterval) newValue.getValue());
+                        }
+                    });
+
+            comicTree.setEditable(true);
+
+            comicTree.setCellFactory((TreeView<Comparable> tv) -> new TextFieldTreeCell<>() {
+                private final MenuItem switchItem;
+
+                private final ContextMenu switchViewMenu = new ContextMenu();
+
+                {
+                    switchItem = new MenuItem();
+                    switchViewMenu.getItems().add(switchItem);
+                    switchItem.setOnAction((ActionEvent e) -> {
+                        if (toggleView) {
+                            comicTree.setRoot(TreeModelHelper.createYearTree(new TreeItem<>("nach Jahren"), comicViewModel.currentYearMap()));
+                            toggleView = false;
+                        } else {
+                            comicTree.setRoot(TreeModelHelper.createComicTree(new TreeItem<>("nach Comics"), comicViewModel.comicMap()));
+                            toggleView = true;
+                        }
+
+                        comicViewModel.setComic(null);
+                        comicViewModel.setYearInterval(null);
+                        comicTree.setShowRoot(true);
+                        comicTree.getRoot().setExpanded(true);
+                        return;
+                    });
+                    setEditable(false);
+                    setContextMenu(switchViewMenu);
+                }
+
+                @Override
+                public void updateSelected(boolean selected) {
+                    if (switchItem != null) {
+                        switchItem.setText(toggleView ? switchToYearText : switchToComicsText);
+                    }
+                }
+            });
+
 
             vonbisRadioButton.selectedProperty().addListener(new ChangeListener<Boolean>() {
                 @Override
@@ -132,8 +177,8 @@ public class Controller {
                                 year2 = newValue;
                             }
 
-                            if(!(year1.isEmpty() && year2.isEmpty()) && pattern.matcher(year1).matches() && pattern.matcher(year2).matches() ) {
-                                comicTree.setRoot(TreeModelHelper.createComicTree(new TreeItem<>("1926 6548484 Suchergebnisse vor (Jahr): (" + year1 + " - " + year2 + ")"), comicViewModel.filterYearsBetween(Integer.parseInt(year1),Integer.parseInt(year2))));
+                            if (!(year1.isEmpty() && year2.isEmpty()) && pattern.matcher(year1).matches() && pattern.matcher(year2).matches()) {
+                                comicTree.setRoot(TreeModelHelper.createComicTree(new TreeItem<>("Suchergebnisse vor (Jahr): (" + year1 + " - " + year2 + ")"), comicViewModel.filterYearsBetween(Integer.parseInt(year1), Integer.parseInt(year2))));
                                 comicTree.getRoot().setExpanded(true);
                             } else {
                                 comicTree.setRoot(treeItemRoot);
@@ -190,14 +235,15 @@ public class Controller {
             });
 
 
-            //Verknupfung
-            comicTree.setRoot(treeItemRoot);
-            comicTree.setShowRoot(true);
-            comicTree.getRoot().setExpanded(true);
-            comicTree.getRoot().getChildren();
         }
     }
-
+    public void updateView() throws IOException {
+        int currentSelection = comicTree.getSelectionModel().getSelectedIndex();
+        ComicViewModel comicViewModel = new ComicViewModel();
+        comicTree.getSelectionModel().getSelectedItem().setValue(comicViewModel.getComic());
+        comicTree.refresh();
+        comicTree.getSelectionModel().select(currentSelection);
+    }
 }
 
 
