@@ -3,11 +3,11 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -25,12 +25,12 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TreeTableView fx:id="filmListView" prefHeight="472.0" prefWidth="350.0">
+                  <TableView fx:id="filmListView" prefHeight="474.0" prefWidth="350.0">
                     <columns>
-                      <TreeTableColumn fx:id="listYear" prefWidth="110.0" />
-                      <TreeTableColumn fx:id="listName" prefWidth="239.0" />
+                      <TableColumn fx:id="listYear" prefWidth="75.0" text="Jahr" />
+                      <TableColumn fx:id="listName" prefWidth="274.0" text="Name" />
                     </columns>
-                  </TreeTableView>
+                  </TableView>
                </children></AnchorPane>
         </items>
       </SplitPane>

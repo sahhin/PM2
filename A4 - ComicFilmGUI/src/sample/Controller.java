@@ -1,7 +1,12 @@
 package sample;
 
+import com.sun.jdi.Value;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -14,7 +19,12 @@ import uimodelhelper.TreeModelHelper;
 import utils.YearInterval;
 
 import java.io.IOException;
+import java.security.Key;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Controller {
 
@@ -32,13 +42,13 @@ public class Controller {
     private TextField searchByText;
 
     @FXML
-    private TreeTableView<Comparable> filmListView;
+    private TableView<String> filmListView = new TableView<>();
 
     @FXML
-    private TreeTableColumn<String, String> listYear = new TreeTableColumn<>("Jahr");
+    private TableColumn<String, String> listYear = new TableColumn<>();
 
     @FXML
-    private TreeTableColumn<String, String> listName;
+    private TableColumn<String, String> listName = new TableColumn<>();
 
     @FXML
     private RadioButton vorRadioButton;
@@ -121,6 +131,23 @@ public class Controller {
                         if (newValue != null && newValue.getValue() instanceof YearInterval) {
                             comicViewModel.setYearInterval((YearInterval) newValue.getValue());
                         }
+
+                        List<String> namesList = new ArrayList<>(comicViewModel.get(comicViewModel.getComic()).values());
+                        ObservableList<String> namesObs = FXCollections.observableArrayList(namesList);
+
+                        List<String> yearsList = new ArrayList<>(comicViewModel.get(comicViewModel.getComic()).values());
+                        ObservableList<String> yearsObs = FXCollections.observableArrayList(yearsList);
+
+                        yearsObs.forEach(k ->  listYear.setCellValueFactory(p -> new
+                                ReadOnlyObjectWrapper<>(yearsObs.get(yearsObs.indexOf(k)))));
+
+
+                        namesObs.forEach(k ->  listName.setCellValueFactory(p -> new
+                                ReadOnlyObjectWrapper<>(namesObs.get(namesObs.indexOf(k)))));
+
+                        filmListView.setItems(yearsObs);
+                        filmListView.setItems(namesObs);
+                        filmListView.getColumns().setAll(listYear,listName);
                     });
 
             comicTree.setEditable(true);
