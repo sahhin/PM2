@@ -19,7 +19,7 @@ public class Ehemalige {
         //Erstelle die Anweisung und übergebe an das DBMS
         Statement statement = con.createStatement();
         String befehl = "insert into Ehemalige(Rufname, Vorname, Nachname, Geburtsname, Geburtsdatum, adresse, EMail, TelNr) \n" +
-                "VALUES ('Pepe', 'Pedro', 'Rosales', 'Pedro Sanchez', '03-06-93',adresse('Bachstrasse 111', 22083, 'Hamburg', 'Deutschland'), 'pedro.sanchez@java.de', 040768932)";
+                "VALUES ('Knecht', 'Knecht', 'Ruprecht', 'Pedro Sanchez', '03-06-93',adresse('Bachstrasse 111', 22083, 'Hamburg', 'Deutschland'), 'pedro.sanchez@java.de', 040768932)";
         int anzahl = statement.executeUpdate(befehl);
         statement.close();
 
@@ -40,12 +40,16 @@ public class Ehemalige {
         Statement statement3 = con.createStatement();
         String secondAnfrage = "SELECT * FROM Ehemalige e join hatbelegtstudiengang h on e.studentid = h.studentid join bietet_studiengang b on b.studiengangkuerzel = h.studiengangkuerzel where h.studiengangkuerzel = 'INF' and b.institutid = (select institutid from institution i where i.bezeichnung = 'HAW')";
         ResultSet zweitesErgebnis = statement3.executeQuery(secondAnfrage);
-        String titel2 = "";
-        while (zweitesErgebnis.) {
-            titel2 = zweitesErgebnis.getString(1);
-            titel2 = titel2 + " " + zweitesErgebnis.getString(3);
-            System.out.println("Ergebnis: " + titel2);
+        ResultSetMetaData rsmd = zweitesErgebnis.getMetaData();
 
+        int cols = rsmd.getColumnCount();
+        while (zweitesErgebnis.next()) {
+            StringBuilder titel2 = new StringBuilder();
+
+            for (int i = 1; i <= cols; i++) {
+                titel2.append(" ").append(zweitesErgebnis.getString(i));
+            }
+            System.out.println("Ergebnis: " + titel2);
         }
         zweitesErgebnis.close();
         statement3.close();

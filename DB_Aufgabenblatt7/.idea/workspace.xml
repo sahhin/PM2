@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0d78cfe-575b-4ad2-9d05-9cdebdf9e574" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../A4 - ComicFilmGUI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../A4 - ComicFilmGUI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ojdbc8_full.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ojdbc8_full.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DB_Praktikum7_Test2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DB_Praktikum7_Test2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DB_Praktikum7_Test2/EhemaligeDB.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DB_Praktikum7_Test2/Ehemalige.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DB_Praktikum7_Test2/Ehemalige.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Ehemalige.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ehemalige.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -54,14 +52,14 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$APPLICATION_CONFIG_DIR$/jdbc-drivers/Oracle/12.2.0.1/ojdbc8.jar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Downloads/xdb6-12.1.0.1.jar!/" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -106,7 +104,8 @@
       <workItem from="1578839749135" duration="161000" />
       <workItem from="1578848969964" duration="1241000" />
       <workItem from="1578900333810" duration="2854000" />
-      <workItem from="1578909353822" duration="4233000" />
+      <workItem from="1578909353822" duration="4505000" />
+      <workItem from="1578920723077" duration="1565000" />
     </task>
     <servers />
   </component>
@@ -118,7 +117,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
