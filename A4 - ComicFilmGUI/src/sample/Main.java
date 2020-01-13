@@ -12,7 +12,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("WCC - Wiki Comic Crawler");
+        primaryStage.setTitle("WCL - Wiki Comic List");
         primaryStage.setScene(new Scene(root, 707, 540));
         primaryStage.show();
 
