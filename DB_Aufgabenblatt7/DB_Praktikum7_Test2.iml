@@ -10,12 +10,11 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../Desktop/ojdbc8-full/ojdbc8.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../Downloads/ojdbc8-12.2.0.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="ojdbc8-full" level="project" />
   </component>
 </module>
