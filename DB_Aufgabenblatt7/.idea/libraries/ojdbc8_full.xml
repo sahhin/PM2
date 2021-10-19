@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="ojdbc8-full">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../Downloads/xdb6-12.1.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../Downloads/xmlparserv2-19.3.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../Downloads/ojdbc8-12.2.0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="707.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <SplitPane dividerPositions="0.5" layoutX="1.0" layoutY="45.0" prefHeight="474.0" prefWidth="707.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="459.0" prefWidth="420.0">
+               <children>
+                  <TreeView fx:id="comicTree" layoutX="5.0" layoutY="8.0" prefHeight="440.0" prefWidth="345.0" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TableView fx:id="filmListView" prefHeight="474.0" prefWidth="350.0">
+                    <columns>
+                      <TableColumn fx:id="listYear" prefWidth="75.0" text="Jahr" />
+                      <TableColumn fx:id="listName" prefWidth="274.0" text="Name" />
+                    </columns>
+                  </TableView>
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
+      <ToolBar prefHeight="45.0" prefWidth="707.0">
+        <items>
+            <Text fx:id="searchByFilmText" strokeType="OUTSIDE" strokeWidth="0.0" text="Filmsuche" />
+            <TextField fx:id="searchByText" prefHeight="35.0" prefWidth="209.0" promptText="Filmname eingeben ...">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></TextField>
+            <RadioButton fx:id="vorRadioButton" mnemonicParsing="false" text="vor">
+               <toggleGroup>
+                  <ToggleGroup fx:id="radiouno" />
+               </toggleGroup>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></RadioButton>
+            <TextField fx:id="vorText" prefHeight="35.0" prefWidth="60.0" promptText="Jahr" />
+            <RadioButton fx:id="nachRadioButton" mnemonicParsing="false" text="nach" toggleGroup="$radiouno">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></RadioButton>
+            <TextField fx:id="nachText" prefHeight="35.0" prefWidth="60.0" promptText="Jahr" />
+            <RadioButton fx:id="vonbisRadioButton" mnemonicParsing="false" text="von - bis" toggleGroup="$radiouno">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></RadioButton>
+            <TextField fx:id="vonbisText1" prefHeight="35.0" prefWidth="60.0" promptText="Jahr" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
+            <TextField fx:id="vonbisText2" prefHeight="35.0" prefWidth="60.0" promptText="Jahr" />
+        </items>
+      </ToolBar>
+      <Text fontSmoothingType="LCD" layoutX="548.0" layoutY="533.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bonesso Immerso, Tekes | 2019">
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor>
+         <font>
+            <Font size="11.0" />
+         </font></Text>
+   </children>
+</Pane>
